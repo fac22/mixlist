@@ -24,3 +24,4 @@ Red:
 Purple:
 
 - #E5CAFF
+- #10003D(background)
