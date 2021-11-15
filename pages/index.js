@@ -9,18 +9,24 @@ export default function Home() {
       <head>
         <title>Mixlist</title>
       </head>
-      <Box w="100%" h="200px" bgGradient="linear(to-r, pink.200, pink.500)">
+      <Box w="100%" h="200px">
+        {' '}
+        {/*bgGradient="linear(to-r, pink.200, pink.500)"*/}
         <header>
           <div>Menu</div>
           <h1>Mixlist</h1>
           <button>Search</button>
         </header>
-        <Input colorScheme="blue" variant="filled" />
         <Flex direction="row" mb={5} rounded width="500px">
           <img src=""></img>
-          <div>Explanation</div>
+          <div>
+            <p>
+              Track your music, recommend albums to your friends, save tracks
+              for later
+            </p>
+          </div>
           <p>Explore</p>
-          <Button colorScheme="blue">Sign up/ Log in</Button>
+          {/* <Button colorScheme="blue">Sign up/ Log in</Button> */}
         </Flex>
         <footer>
           <p>Contact us</p>
