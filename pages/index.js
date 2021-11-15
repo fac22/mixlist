@@ -18,6 +18,8 @@ import {
   MenuCommand,
   MenuDivider,
   Heading,
+  UnorderedList,
+  ListItem,
 } from '@chakra-ui/react';
 import {
   AddIcon,
@@ -45,44 +47,38 @@ export default function Home() {
         bg="red"
         visibility={toggleMenu ? 'visible' : 'hidden'}
         position="fixed"
+        paddingTop="40px"
       >
-        <li>HOME</li>
-        <li>HOME</li>
-        <li>HOME</li>
-        <li>HOME</li>
-        <li>HOME</li>
+        <UnorderedList
+          width="100%"
+          height="100%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-around"
+          alignItems="center"
+          listStyleType="none"
+        >
+          <ListItem>HOME</ListItem>
+          <ListItem>HOME</ListItem>
+          <ListItem>HOME</ListItem>
+          <ListItem>HOME</ListItem>
+          <ListItem>HOME</ListItem>
+        </UnorderedList>
       </Box>
 
-      <Button
-        onClick={() =>
-          setToggleMenu(() => {
-            return toggleMenu === true ? false : true;
-          })
-        }
-      >
-        SHOW
-      </Button>
-
       <Flex direction="row" width="100vw" justifyContent="space-between">
-        {/* <Menu>
-          <MenuButton as={Button}>
-            <HamburgerIcon />
-          </MenuButton>
-          <MenuList width="100vw" height="100vh" padding="0" margin="0">
-            <MenuGroup title="Profile">
-              <MenuItem>My Account</MenuItem>
-              <MenuItem>Payments </MenuItem>
-            </MenuGroup>
-            <MenuDivider />
-            <MenuGroup title="Help">
-              <MenuItem>Docs</MenuItem>
-              <MenuItem>FAQ</MenuItem>
-            </MenuGroup>
-          </MenuList>
-        </Menu> */}
-
+        <Button
+          onClick={() =>
+            setToggleMenu(() => {
+              return toggleMenu === true ? false : true;
+            })
+          }
+        >
+          <HamburgerIcon />
+        </Button>
         <Heading>Mixlist</Heading>
-        <SearchIcon />
+
+        <SearchIcon margin="7px" />
       </Flex>
       <Flex direction="row" mb={5} rounded width="500px">
         <img src=""></img>
