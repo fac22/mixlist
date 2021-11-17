@@ -1,5 +1,4 @@
 import React from 'react';
-import Home from '../pages';
 
 export default function Search({ search, setSearch, result }) {
   return (
