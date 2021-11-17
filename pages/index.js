@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import React from 'react';
+import Search from '../components/Search';
+
 import {
   Input,
   Box,
@@ -30,25 +32,57 @@ import {
   EditIcon,
   SearchIcon,
 } from '@chakra-ui/icons';
+import { render } from 'react-dom';
 const url = `https://ws.audioscrobbler.com/2.0/?method=album.search&album=donda&api_key=e836ddbce95921744c7e9efe110bcd54&format=json`;
 
-export async function getServerSideProps({ req, res }) {
-  return fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log(data);
-      // const { data, error } = await
-      return {
-        props: {
-          albums: data.results.albummatches.album,
-        },
-      };
-    });
-}
-export default function Home({ albums }) {
-  console.log(albums);
-  const selectedResults = albums.slice(0, 5);
+// export async function getServerSideProps({ req, res }) {
+//   return await fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       // console.log(data);
+//       // const { data, error } = await
+//       return {
+//         props: {
+//           albums: data.results.albummatches.album,
+//         },
+//       };
+//     });
+// }
+export default function Home() {
+  const [result, setResult] = React.useState();
+  const [search, setSearch] = React.useState('');
+  console.log('search', search);
+  React.useEffect(() => {
+    console.log('index', search);
+    if (search === undefined || search === '') {
+      return;
+    }
+    fetch(
+      `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${search}&api_key=e836ddbce95921744c7e9efe110bcd54&format=json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('data', data);
+        setResult(data.results.albummatches.album);
+        return result;
+      });
+  }, [search]);
+
+  // const selectedResults = albums.slice(0, 5);
   const [input, setInput] = React.useState('');
+  console.log('Input', input);
+  console.log(search);
+
+  // React.useEffect(() => {
+  // })
+
+  // React.useEffect(() => {
+  //   if (input === undefined) {
+  //     return;
+  //   }
+  //   setInput(input);
+  // }, [input]);
+
   return (
     <>
       <Head>
@@ -58,11 +92,19 @@ export default function Home({ albums }) {
       </Head>
       <main>
         <section>
-          <h1>Last.fm Testing</h1>
+          <Search search={search} setSearch={setSearch} result={result} />
+          {/* <h1>Last.fm Testing</h1>
 
           <p>Search an album</p>
 
-          <form id="albumForm">
+          <form
+            id="albumForm"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setInput(event.target.value);
+              url = `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${input}&api_key=e836ddbce95921744c7e9efe110bcd54&format=json`;
+            }}
+          >
             <label htmlFor="album">Album</label>
             <input
               type="text"
@@ -73,17 +115,17 @@ export default function Home({ albums }) {
               onInput={(e) => setInput(e.target.value)}
               required
             />
-            <button type="submit" id="albumSubmit">
+            <Button type="submit" id="albumSubmit">
               Submit
-            </button>
-          </form>
+            </Button>
+          </form> */}
         </section>
-        <h1>Search results for DONDA</h1>
+        {/* <h1>Search results for DONDA</h1>
 
         <div>
           {selectedResults.map((e) => (
             <div key={`${e.name}`}>
-              {/* <Image src={`${e.image[1][`#text`]}`} alt="" /> */}
+              <img src={`${e.image[2][`#text`]}`} alt="" />
 
               <p>Name: </p>
               <b>
@@ -95,7 +137,7 @@ export default function Home({ albums }) {
               </i>
             </div>
           ))}
-        </div>
+        </div> */}
       </main>
     </>
   );
