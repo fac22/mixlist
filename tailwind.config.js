@@ -1,7 +1,5 @@
 module.exports = {
-  // mode: 'jit', // Add Just In Time Mode
-
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
@@ -23,5 +21,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('tailwind-hamburgers')],
+  plugins: [],
 };
