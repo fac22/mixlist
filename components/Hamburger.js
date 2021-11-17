@@ -1,4 +1,6 @@
-export const Hambuger = () => {
+import React from 'react';
+
+export default function Hamburger() {
   return (
     <div className="w-screen flex flex-row justify-between">
       <button
@@ -19,4 +21,4 @@ export const Hambuger = () => {
       <span>🔍</span>
     </div>
   );
-};
+}
