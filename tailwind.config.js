@@ -3,11 +3,14 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      BLUET: 'rgba(86, 154, 255, 0.85)',
-      REDT: 'rgba(255, 200, 200, 0.85)',
-      GREENT: 'rgba(118, 255, 189, 0.85)',
-      PINKT: 'rgba(247, 200, 255, 0.85)',
-      PURPLET: '#0E0047',
+      BLUET: 'rgba(136, 184, 255, 1)',
+      REDT: 'rgba(255, 200, 200, 1)',
+      GREENT: 'rgba(118, 255, 189, 1)',
+      PINKT: 'rgba(247, 200, 255, 1)',
+      BLUEHOVER: 'rgba(86, 154, 255)',
+      REDHOVER: 'rgba(255, 219, 219, 1)',
+      GREENHOVER: 'rgba(179, 255, 218, 1)',
+      PINKHOVER: 'rgba(247, 200, 255, 0.50)',
       BLUE: '#B8BFFF',
       PINK: '#FFC9C9',
       GREEN: '#D8FFCA',
@@ -16,8 +19,21 @@ module.exports = {
       DRED: '#FF0000',
       DPINK: '#8000FF',
       DGREEN: '#23AF00',
+      WHITE: '#FFFFFF',
+      DPURPLE: '#10003D',
     },
-    extend: {},
+    backgroundImage: {
+      shapes: "url('/bg-4.png')",
+    },
+    fontFamily: {
+      header: ['Archivo'],
+      body: ['IBM Plex Mono'],
+    },
+    extend: {
+      screens: {
+        'hover-hover': { raw: '(hover: hover)' },
+      },
+    },
   },
   variants: {
     extend: {},
