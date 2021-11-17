@@ -1,18 +1,25 @@
 module.exports = {
-  // mode: 'jit', // Add Just In Time Mode
-
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      mixlistPurple: '#10003D',
-      white: '#FFFFFF',
-      red: '#FFB8A8',
+      BLUET: 'rgba(86, 154, 255, 0.85)',
+      REDT: 'rgba(255, 200, 200, 0.85)',
+      GREENT: 'rgba(118, 255, 189, 0.85)',
+      PINKT: 'rgba(247, 200, 255, 0.85)',
+      BLUE: '#B8BFFF',
+      PINK: '#FFC9C9',
+      GREEN: '#D8FFCA',
+      WHITE: '#FFFFFF',
+      BLUED: '#0029FF',
+      REDD: '#FF0000',
+      PINKD: '#8000FF',
+      GREEND: '#23AF00',
     },
     extend: {},
   },
   variants: {
     extend: {},
   },
-  plugins: [require('tailwind-hamburgers')],
+  plugins: [],
 };
