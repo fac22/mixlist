@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      mixlistPurple: '#10003D',
+      primary: '#10003D',
     },
     extend: {},
   },
