@@ -1,11 +1,26 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
+
 import { Button } from '../components/Button';
 import { Header } from '../components/Header';
 import Input from '../components/Input';
 import { Main } from '../components/Main';
 
+
+// export async function getServerSideProps({ req, res }) {
+//   return await fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       // console.log(data);
+//       // const { data, error } = await
+//       return {
+//         props: {
+//           albums: data.results.albummatches.album,
+//         },
+//       };
+//     });
+// }
 export default function Home() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   // const menuValues =
