@@ -2,99 +2,53 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import React from 'react';
-import {
-  Input,
-  Box,
-  Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
-  MenuDivider,
-  Heading,
-  UnorderedList,
-  ListItem,
-} from '@chakra-ui/react';
-import {
-  AddIcon,
-  HamburgerIcon,
-  ExternalLinkIcon,
-  RepeatIcon,
-  IconButton,
-  EditIcon,
-  SearchIcon,
-} from '@chakra-ui/icons';
 
 export default function Home() {
   const [toggleMenu, setToggleMenu] = React.useState(true);
+  const menuValues =
+    'flex flex-col w-screen h-screen bg-red-300 fixed justify-center ';
+
   return (
-    <>
+    <html lang="en">
       <head>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Mixlist</title>
       </head>
-      <Box
-        width="100%"
-        height="100%"
-        bg="red"
-        visibility={toggleMenu ? 'visible' : 'hidden'}
-        position="fixed"
-        paddingTop="40px"
-      >
-        <UnorderedList
-          width="100%"
-          height="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-around"
-          alignItems="center"
-          listStyleType="none"
-        >
-          <ListItem>HOME</ListItem>
-          <ListItem>HOME</ListItem>
-          <ListItem>HOME</ListItem>
-          <ListItem>HOME</ListItem>
-          <ListItem>HOME</ListItem>
-        </UnorderedList>
-      </Box>
 
-      <Flex direction="row" width="100vw" justifyContent="space-between">
-        <Button
-          onClick={() =>
-            setToggleMenu(() => {
-              return toggleMenu === true ? false : true;
-            })
-          }
+      <body className="bg-red text-white">
+        <div
+          className={`${menuValues} ${toggleMenu ? 'visible' : 'invisible'}`}
         >
-          <HamburgerIcon />
-        </Button>
-        <Heading>Mixlist</Heading>
+          <h1 className="bg-mixlistPurple text-center	">🎸</h1>
 
-        <SearchIcon margin="7px" />
-      </Flex>
-      <Flex direction="row" mb={5} rounded width="500px">
-        <img src=""></img>
-        <div>
-          <p>
-            Track your music, recommend albums to your friends, save tracks for
-            later
-          </p>
+          <ul className="w-screen h-screen flex flex-col justify-around items-center list-none bg-mixlistPurple">
+            <li>HOME</li>
+            <li>PROFILE</li>
+            <li>TREND</li>
+            <li>LOGIN</li>
+          </ul>
         </div>
-        <p>Explore</p>
-        {/* <Button colorScheme="blue">Sign up/ Log in</Button> */}
-      </Flex>
-      <footer>
-        <p>Contact us</p>
-        <button>Help</button>
-      </footer>
-    </>
+        <div className="w-screen flex flex-row justify-between">
+          <button
+            onClick={() =>
+              setToggleMenu(() => {
+                return toggleMenu ? false : true;
+              })
+            }
+          >
+            <div className="tham tham-e-squeeze tham-w-6">
+              <div className="tham-box">
+                <div className="tham-inner" />
+              </div>
+            </div>
+          </button>
+          <h1>Mixlist</h1>
+
+          <span>🔍</span>
+        </div>
+      </body>
+    </html>
   );
 }
