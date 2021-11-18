@@ -25,7 +25,7 @@ export default function RecLogged(props) {
       <p className={`text-${props.loggedTitleColour} m-5 text-lg`}>
         RECENTLY LOGGED
       </p>
-      <div className="grid grid-cols-3 sm:grid-cols-3 m-auto">
+      <div className="sm:grid-cols-3 grid grid-cols-3 m-auto">
         {albumImgs.map((item) => (
           <img
             src={item.src}
