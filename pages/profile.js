@@ -1,5 +1,5 @@
 import React from 'react';
-import Hamburger from '../components/Hamburger';
+import { Header } from '../components/Header';
 import UserInfo from '../components/UserInfo';
 import FavAlbums from '../components/FavAlbums';
 import RecReviews from '../components/RecReviews';
@@ -15,7 +15,7 @@ export default function Profile() {
   };
   return (
     <main className="flex flex-col bg-PURPLET text-WHITE">
-      <Hamburger />
+      <Header>MY PROFILE</Header>
       <UserInfo userTitleColour={colours.username} />
       <FavAlbums favTitleColour={colours.favtitle} />
       <RecReviews reviewTitleColour={colours.reviewtitle} />
