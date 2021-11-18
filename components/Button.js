@@ -8,7 +8,7 @@ export const Button = ({
 }) => {
   return (
     <button
-      className={`rounded-md bg-${bgColor} text-${textColor} hover:bg-${bgColorHover} active:bg-${bgColorHover} hover:text-${textColorHover} content-center w-2/3 md:w-80 h-12 transition duration-150 ease-in-out font-header tracking-wider mb-4 border-solid border text-lg flex flex-col justify-center ali`}
+      className={`rounded-md bg-${bgColor} text-${textColor} hover:bg-${bgColorHover} active:bg-${bgColorHover} hover:text-${textColorHover}  w-2/3 md:w-80 h-12 transition duration-150 ease-in-out font-header tracking-wider mb-4 border-solid border text-lg flex flex-col justify-center items-center`}
     >
       {title}
     </button>
