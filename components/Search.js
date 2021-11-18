@@ -1,16 +1,18 @@
 import React from 'react';
 import MenuList from './MenuItem';
-import { menuOptions } from './menuOptions';
-import { HiOutlineMenu } from 'react-icons/hi';
 import Input from './Input';
 import { Button } from './Button';
+import { Styles } from './Styles';
 
 export default function Search(props) {
   const STYLE = 'font-header text-4xl tracking-widest text-center mt-3';
   return (
     <>
       <div
-        className={`fixed w-full h-full transition duration-300 ease-in-out p-5 flex flex-col justify-center items-center z-30 ${
+        className={`fixed w-full h-full 
+        ${
+          Styles.transition
+        } p-5 flex flex-col justify-center items-center z-30 ${
           props.toggleSearch ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -19,7 +21,7 @@ export default function Search(props) {
           bgColor="PINKT"
           textColor="DPINK"
           bgColorHover={'PINKHOVER'}
-          type={'password'}
+          type={'text'}
         />
         <Button
           bgColor={'GREENT'}
