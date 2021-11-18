@@ -1,25 +1,40 @@
 import React from 'react';
-import { Header } from '../components/Header';
-import UserInfo from '../components/UserInfo';
-import FavAlbums from '../components/FavAlbums';
-import RecReviews from '../components/RecReviews';
-import RecLogged from '../components/RecLogged';
+import Head from 'next/head';
+import Profile from '../components/Profile';
 
-export default function Profile() {
-  const colours = {
-    text: 'WHITE',
-    username: 'BLUEPRO',
-    favtitle: 'PINKPRO',
-    reviewtitle: 'PURPLEPRO',
-    loggedtitle: 'GREENPRO',
-  };
+import { Header } from '../components/Header';
+import { Main } from '../components/Main';
+import { H2 } from '../components/H2';
+import Input from '../components/Input';
+import Menu from '../components/Menu';
+import Search from '../components/Search';
+import { BackgroundWrapper } from '../components/BackgroundWrapper';
+
+export default function profile() {
+  const [toggleMenu, setToggleMenu] = React.useState(false);
+  const [toggleSearch, setToggleSearch] = React.useState(false);
   return (
-    <main className="flex flex-col bg-PURPLET text-WHITE">
-      <Header>MY PROFILE</Header>
-      <UserInfo userTitleColour={colours.username} />
-      <FavAlbums favTitleColour={colours.favtitle} />
-      <RecReviews reviewTitleColour={colours.reviewtitle} />
-      <RecLogged loggedTitleColour={colours.loggedtitle} />
-    </main>
+    <>
+      <Head>
+        <title>PROFILE</title>
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+
+      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
+      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
+      <Header
+        toggleMenu={toggleMenu}
+        setToggleMenu={setToggleMenu}
+        toggleSearch={toggleSearch}
+        setToggleSearch={setToggleSearch}
+        textColor={'WHITE'}
+        content={'MYPROFILE'}
+      />
+      <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
+        <Profile />
+      </BackgroundWrapper>
+    </>
   );
 }
