@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-
+import { Main } from '../components/Main';
 import Input from '../components/Input';
 import { Header } from '../components/Header';
 import Menu from '../components/Menu';
@@ -31,16 +31,18 @@ export default function LoginPage(props) {
         content={'MYPROFILE'}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <form className="flex flex-col items-center justify-center w-screen h-screen">
-          <Input placeHolder="EMAIL" bgColor="REDT" textColor="DRED" />
-          <Input placeHolder="PASSWORD" bgColor="BLUET" textColor="DBLUE" />
-          <Button
-            bgColor={'GREENT'}
-            textColor={'DGREEN'}
-            bgColorHover={'GREENHOVER'}
-            title={'CLICK'}
-          />
-        </form>
+        <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
+          <form className="flex flex-col items-center justify-center h-screen">
+            <Input placeHolder="EMAIL" bgColor="REDT" textColor="DRED" />
+            <Input placeHolder="PASSWORD" bgColor="BLUET" textColor="DBLUE" />
+            <Button
+              bgColor={'GREENT'}
+              textColor={'DGREEN'}
+              bgColorHover={'GREENHOVER'}
+              title={'LOGIN'}
+            />
+          </form>
+        </Main>
       </BackgroundWrapper>
     </>
   );

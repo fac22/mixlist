@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Profile from '../components/Profile';
-
+import { Main } from '../components/Main';
 import { Header } from '../components/Header';
 
 import Menu from '../components/Menu';
@@ -32,22 +32,24 @@ export default function SearchPage() {
         content={'SEARCH'}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <form className="flex flex-col items-center justify-center w-screen h-screen">
-          <Input
-            placeHolder="SEARCH"
-            bgColor="REDT"
-            textColor="DRED"
-            bgColorHover={'REDHOVER'}
-            type={'email'}
-          />
+        <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
+          <form className="flex flex-col items-center justify-center h-screen">
+            <Input
+              placeHolder="SEARCH"
+              bgColor="REDT"
+              textColor="DRED"
+              bgColorHover={'REDHOVER'}
+              type={'email'}
+            />
 
-          <Button
-            bgColor={'GREENT'}
-            textColor={'DGREEN'}
-            bgColorHover={'GREENHOVER'}
-            title={'SEARCH'}
-          />
-        </form>
+            <Button
+              bgColor={'GREENT'}
+              textColor={'DGREEN'}
+              bgColorHover={'GREENHOVER'}
+              title={'SEARCH'}
+            />
+          </form>
+        </Main>
       </BackgroundWrapper>
     </>
   );
