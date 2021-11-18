@@ -1,5 +1,3 @@
-// pages/_document.js
-
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -19,7 +17,7 @@ class MyDocument extends Document {
           />
         </Head>
 
-        <body className="bg-DPURPLE bg-shapes m-5 bg-fixed bg-cover">
+        <body className="bg-DPURPLE  h-screen">
           <Main />
           <NextScript />
         </body>
@@ -27,5 +25,4 @@ class MyDocument extends Document {
     );
   }
 }
-
 export default MyDocument;

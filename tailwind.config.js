@@ -21,6 +21,7 @@ module.exports = {
       DGREEN: '#23AF00',
       WHITE: '#FFFFFF',
       DPURPLE: '#10003D',
+      PURPLET: 'rgba(16, 0, 61, 0.2)',
       BLUEPRO: '#00E0FF',
       PINKPRO: '#FFDBDB',
       PURPLEPRO: '#9F9DFF',
@@ -36,6 +37,9 @@ module.exports = {
     extend: {
       screens: {
         'hover-hover': { raw: '(hover: hover)' },
+      },
+      blur: {
+        max: '50px',
       },
     },
   },
