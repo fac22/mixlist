@@ -8,7 +8,7 @@ import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import { Button } from '../components/Button';
 
-export default function loginPage(props) {
+export default function LoginPage(props) {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   return (

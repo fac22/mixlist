@@ -8,13 +8,13 @@ import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 
-export default function ProfilePage() {
+export default function DiscoverPage() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   return (
     <>
       <Head>
-        <title>PROFILE</title>
+        <title>DISCOVER</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,10 +28,10 @@ export default function ProfilePage() {
         toggleSearch={toggleSearch}
         setToggleSearch={setToggleSearch}
         textColor={'WHITE'}
-        content={'MYPROFILE'}
+        content={'DISCOVER'}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <Profile />
+        <h1 className="text-WHITE">DISCOVER</h1>
       </BackgroundWrapper>
     </>
   );

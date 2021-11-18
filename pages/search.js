@@ -7,14 +7,15 @@ import { Header } from '../components/Header';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
-
-export default function ProfilePage() {
+import Input from '../components/Input';
+import { Button } from '../components/Button';
+export default function SearchPage() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   return (
     <>
       <Head>
-        <title>PROFILE</title>
+        <title>SEARCH</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,10 +29,25 @@ export default function ProfilePage() {
         toggleSearch={toggleSearch}
         setToggleSearch={setToggleSearch}
         textColor={'WHITE'}
-        content={'MYPROFILE'}
+        content={'SEARCH'}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <Profile />
+        <form className="flex flex-col items-center justify-center w-screen h-screen">
+          <Input
+            placeHolder="SEARCH"
+            bgColor="REDT"
+            textColor="DRED"
+            bgColorHover={'REDHOVER'}
+            type={'email'}
+          />
+
+          <Button
+            bgColor={'GREENT'}
+            textColor={'DGREEN'}
+            bgColorHover={'GREENHOVER'}
+            title={'SEARCH'}
+          />
+        </form>
       </BackgroundWrapper>
     </>
   );
