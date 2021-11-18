@@ -26,7 +26,7 @@ export default function RecReviews(props) {
         RECENT REVIEWS
       </p>
       <ul className="flex flex-col">
-        <li className="flex flex-col sm:w-4/5">
+        <li className="sm:w-4/5 flex flex-col">
           {albumImgs.slice(0, 2).map((item) => (
             <div className={`flex flex-row m-auto w-5/6`} key={props.id}>
               <img

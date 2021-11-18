@@ -28,7 +28,7 @@ export const Header = ({
 
   return (
     <div
-      className={`flex flex-row w-full p-5 fixed z-30 ${menuToggle} ${searchJustify}`}
+      className={`bg-DPURPLE flex flex-row w-full p-5 fixed z-30 ${menuToggle} ${searchJustify}`}
     >
       <button onClick={toggleMenuFn} className={`${menuSearchToggle}`}>
         <HiOutlineMenu className={iconStyle} size={24} />
