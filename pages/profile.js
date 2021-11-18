@@ -3,9 +3,7 @@ import Head from 'next/head';
 import Profile from '../components/Profile';
 
 import { Header } from '../components/Header';
-import { Main } from '../components/Main';
-import { H2 } from '../components/H2';
-import Input from '../components/Input';
+
 import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
