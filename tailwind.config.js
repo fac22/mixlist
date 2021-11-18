@@ -22,6 +22,10 @@ module.exports = {
       WHITE: '#FFFFFF',
       DPURPLE: '#10003D',
       PURPLET: 'rgba(16, 0, 61, 0.2)',
+      BLUEPRO: '#00E0FF',
+      PINKPRO: '#FFDBDB',
+      PURPLEPRO: '#9F9DFF',
+      GREENPRO: '#00FF66',
     },
     backgroundImage: {
       shapes: "url('/bg-4.png')",
