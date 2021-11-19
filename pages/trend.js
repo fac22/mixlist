@@ -28,9 +28,10 @@ export default function TrendPage() {
         textColor={'WHITE'}
         content={'TREND'}
       />
-      <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <h1 className="text-WHITE">TREND</h1>
-      </BackgroundWrapper>
+      <BackgroundWrapper
+        toggleMenu={toggleMenu}
+        toggleSearch={toggleSearch}
+      ></BackgroundWrapper>
     </>
   );
 }
