@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Details() {
   const router = useRouter();
-  const artist = router.query.name;
+  const artist = router.query;
 
   const [art, setArt] = React.useState();
   const [ta, setTa] = React.useState();
@@ -33,13 +33,13 @@ export default function Details() {
   if (!art || !ta) return <div>Loading...</div>;
   return (
     <>
-      <div className="text-WHITE align-center w-full h-full p-20">
-        <h1 className="align-center">{art.name} page</h1>
+      <div className="text-WHITE align-center w-full p-5">
+        <h1>{art.name} page</h1>
         <img src={`${art.image[1][`#text`]}`} alt="" />
         <p>{art.bio.summary.split('.')[0] + '.'}</p>
-        <h2 className="p-5">Top Albums</h2>
+        <h2>Top Albums</h2>
         {ta.slice(0, 10).map((e) => (
-          <div key={e.mbid} className="mt-5">
+          <div key={e.mbid}>
             <li>
               <Link
                 href="/artists/[name]/[track]"
