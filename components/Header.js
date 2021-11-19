@@ -2,12 +2,13 @@ import Image from 'next/image';
 import { HiOutlineMenu } from 'react-icons/hi';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdOutlineClose } from 'react-icons/md';
+import { CgProfile } from 'react-icons/cg';
 
 export const Header = ({
   toggleMenu,
   setToggleMenu,
-  toggleSearch,
-  setToggleSearch,
+  toggleProfile,
+  setToggleProfile,
   content,
   textColor,
 }) => {
@@ -15,23 +16,23 @@ export const Header = ({
     setToggleMenu(() => (toggleMenu === true ? false : true));
   };
 
-  const toggleSearchFn = () => {
-    setToggleSearch(() => (toggleSearch === true ? false : true));
+  const toggleProfileFn = () => {
+    setToggleProfile(() => (toggleProfile === true ? false : true));
   };
 
-  const searchJustify = toggleSearch ? 'justify-end' : 'justify-between';
+  const profileJustify = toggleProfile ? 'justify-end' : 'justify-between';
   const menuToggle =
-    toggleMenu || toggleSearch
+    toggleMenu || toggleProfile
       ? 'z-30 bg-none'
       : 'visible bg-DPURPLE bg-opacity-95';
   const toggleCloseButton = toggleMenu ? 'visible' : 'hidden';
-  const searchToggle = toggleSearch ? 'visible' : 'hidden';
-  const hideMenuButton = toggleMenu || toggleSearch ? 'hidden' : 'visible';
+  const profileToggle = toggleProfile ? 'visible' : 'hidden';
+  const hideMenuButton = toggleMenu || toggleProfile ? 'hidden' : 'visible';
   const iconStyle = 'text-WHITE fill-current';
 
   return (
     <div
-      className={`flex flex-row w-full p-5 fixed z-30 ${menuToggle} ${searchJustify}`}
+      className={`flex flex-row w-full p-5 fixed z-30 ${menuToggle} ${profileJustify}`}
     >
       {/* Left Menu Buttons*/}
       <button onClick={toggleMenuFn} className={`${hideMenuButton}`}>
@@ -46,17 +47,6 @@ export const Header = ({
         />
       </button>
 
-      {/* Right Close Button */}
-      <button
-        onClick={() => setToggleSearch(toggleSearchFn)}
-        className={`${searchToggle}`}
-      >
-        <MdOutlineClose
-          className={`${iconStyle} transform translate-y-px self-end`}
-          size={24}
-        />
-      </button>
-
       {/* MixList Header */}
       <h2
         className={`font-header text-xl text-${textColor} tracking-widest ${hideMenuButton}`}
@@ -65,12 +55,9 @@ export const Header = ({
       </h2>
 
       {/* Right Search Button */}
-      <button
-        onClick={() => setToggleSearch(toggleSearchFn)}
-        className={`${hideMenuButton}`}
-      >
-        <AiOutlineSearch className={iconStyle} size={24} />
-      </button>
+      <a href={'/profile'} className={`${hideMenuButton}`}>
+        <CgProfile className={iconStyle} size={24} />
+      </a>
     </div>
   );
 };
