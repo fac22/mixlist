@@ -47,17 +47,6 @@ export const Header = ({
         />
       </button>
 
-      {/* Right Close Button */}
-      <button
-        onClick={() => setToggleProfile(toggleProfileFn)}
-        className={`${profileToggle}`}
-      >
-        <MdOutlineClose
-          className={`${iconStyle} transform translate-y-px self-end`}
-          size={24}
-        />
-      </button>
-
       {/* MixList Header */}
       <h2
         className={`font-header text-xl text-${textColor} tracking-widest ${hideMenuButton}`}
