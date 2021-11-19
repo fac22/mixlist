@@ -9,11 +9,27 @@ import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import Input from '../components/Input';
 import { Button } from '../components/Button';
+import { motion } from 'framer-motion';
+
+const settings = {
+  initial: {
+    opacity: 0,
+    x: 250,
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+    },
+  },
+};
+
 export default function SearchPage() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   return (
-    <>
+    <motion.div initial={'initial'} animate={'animate'} exit={{ opacity: 0 }}>
       <Head>
         <title>SEARCH</title>
         <meta charSet="UTF-8" />
@@ -31,26 +47,29 @@ export default function SearchPage() {
         textColor={'WHITE'}
         content={'SEARCH'}
       />
-      <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-          <form className="flex flex-col items-center justify-center h-screen">
-            <Input
-              placeHolder="SEARCH"
-              bgColor="REDT"
-              textColor="DRED"
-              bgColorHover={'REDHOVER'}
-              type={'email'}
-            />
 
-            <Button
-              bgColor={'GREENT'}
-              textColor={'DGREEN'}
-              bgColorHover={'GREENHOVER'}
-              title={'SEARCH'}
-            />
-          </form>
-        </Main>
+      <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
+        <motion.div variants={settings}>
+          <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
+            <form className="flex flex-col items-center justify-center h-screen">
+              <Input
+                placeHolder="SEARCH"
+                bgColor="REDT"
+                textColor="DRED"
+                bgColorHover={'REDHOVER'}
+                type={'email'}
+              />
+
+              <Button
+                bgColor={'GREENT'}
+                textColor={'DGREEN'}
+                bgColorHover={'GREENHOVER'}
+                title={'SEARCH'}
+              />
+            </form>
+          </Main>
+        </motion.div>
       </BackgroundWrapper>
-    </>
+    </motion.div>
   );
 }

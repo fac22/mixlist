@@ -12,26 +12,41 @@ import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
 
+const settings = {
+  initial: {
+    opacity: 1,
+    x: 250,
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+    },
+  },
+};
+
 export default function Home() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   return (
-    <>
+    <motion.div initial={'initial'} animate={'animate'} exit={{ opacity: 0 }}>
       <Head>
         <Layout title="MIXLIST" />
       </Head>
-      <motion>
-        <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-        <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
-        <Header
-          toggleMenu={toggleMenu}
-          setToggleMenu={setToggleMenu}
-          toggleSearch={toggleSearch}
-          setToggleSearch={setToggleSearch}
-          textColor={'WHITE'}
-          content={'MIXLIST'}
-        />
-        <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
+
+      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
+      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
+      <Header
+        toggleMenu={toggleMenu}
+        setToggleMenu={setToggleMenu}
+        toggleSearch={toggleSearch}
+        setToggleSearch={setToggleSearch}
+        textColor={'WHITE'}
+        content={'MIXLIST'}
+      />
+      <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
+        <motion.div variants={settings}>
           <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
             <section className="mt-40 mb-20">
               <H2 color={'GREENT'}>DISCOVER</H2>
@@ -59,12 +74,13 @@ export default function Home() {
                 bgColor={'GREENT'}
                 textColor={'DGREEN'}
                 bgColorHover={'GREENHOVER'}
-                title={'DISCOVER'}
+                title={'SIGN UP'}
+                route={'login'}
               />
             </section>
           </Main>
-        </BackgroundWrapper>
-      </motion>
-    </>
+        </motion.div>
+      </BackgroundWrapper>
+    </motion.div>
   );
 }
