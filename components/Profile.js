@@ -12,7 +12,7 @@ export default function Profile() {
     loggedtitle: 'GREENPRO',
   };
   return (
-    <div className="text-WHITE p-5 mt-20 mb-20">
+    <div className="text-WHITE p-5 mb-20">
       <UserInfo userTitleColour={colours.username} />
       <FavAlbums favTitleColour={colours.favtitle} />
       <RecReviews reviewTitleColour={colours.reviewtitle} />
