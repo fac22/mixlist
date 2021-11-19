@@ -20,48 +20,56 @@ export const Header = ({
   };
 
   const searchJustify = toggleSearch ? 'justify-end' : 'justify-between';
-  const menuToggle = toggleMenu ? 'z-30' : 'visible';
-  const closeToggle = toggleMenu ? 'visible' : 'hidden';
+  const menuToggle =
+    toggleMenu || toggleSearch
+      ? 'z-30 bg-none'
+      : 'visible bg-DPURPLE bg-opacity-95';
+  const toggleCloseButton = toggleMenu ? 'visible' : 'hidden';
   const searchToggle = toggleSearch ? 'visible' : 'hidden';
-  const menuSearchToggle = toggleMenu || toggleSearch ? 'hidden' : 'visible';
+  const hideMenuButton = toggleMenu || toggleSearch ? 'hidden' : 'visible';
   const iconStyle = 'text-WHITE fill-current';
 
   return (
     <div
-      className={`bg-DPURPLE flex flex-row w-full p-5 fixed z-30 ${menuToggle} ${searchJustify}`}
+      className={`flex flex-row w-full p-5 fixed z-30 ${menuToggle} ${searchJustify}`}
     >
-      <button onClick={toggleMenuFn} className={`${menuSearchToggle}`}>
+      {/* Left Menu Buttons*/}
+      <button onClick={toggleMenuFn} className={`${hideMenuButton}`}>
         <HiOutlineMenu className={iconStyle} size={24} />
       </button>
 
-      <button onClick={toggleMenuFn} className={`${closeToggle}`}>
+      {/* Left Close Button */}
+      <button onClick={toggleMenuFn} className={`${toggleCloseButton}`}>
         <MdOutlineClose
-          className="text-WHITE transform translate-y-px fill-current"
+          className={`${iconStyle} transform translate-y-px`}
           size={24}
         />
       </button>
 
+      {/* Right Close Button */}
       <button
         onClick={() => setToggleSearch(toggleSearchFn)}
         className={`${searchToggle}`}
       >
         <MdOutlineClose
-          className="text-WHITE self-end transform translate-y-px fill-current"
+          className={`${iconStyle} transform translate-y-px self-end`}
           size={24}
         />
       </button>
 
+      {/* MixList Header */}
       <h2
-        className={`font-header text-xl text-${textColor} tracking-widest ${menuSearchToggle}`}
+        className={`font-header text-xl text-${textColor} tracking-widest ${hideMenuButton}`}
       >
         {content}
       </h2>
 
+      {/* Right Search Button */}
       <button
         onClick={() => setToggleSearch(toggleSearchFn)}
-        className={`${menuSearchToggle}`}
+        className={`${hideMenuButton}`}
       >
-        <AiOutlineSearch className="text-WHITE fill-current" size={24} />
+        <AiOutlineSearch className={iconStyle} size={24} />
       </button>
     </div>
   );
