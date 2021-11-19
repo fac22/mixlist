@@ -16,6 +16,7 @@ import { BiLike } from 'react-icons/bi';
 import { BiPlus } from 'react-icons/bi';
 import { Review } from '../components/Review';
 import InputTextArea from '../components/InputTextArea';
+import Layout from '../components/Layout';
 
 export default function Home() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -23,10 +24,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>MIXLIST</title>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <Layout title="ALBUM" />
       </Head>
       <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
       <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />

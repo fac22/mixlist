@@ -10,6 +10,7 @@ import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import { motion } from 'framer-motion';
+import Layout from '../components/Layout';
 
 export default function Home() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -17,10 +18,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>MIXLIST</title>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <Layout title="MIXLIST" />
       </Head>
       <motion>
         <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
