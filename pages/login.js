@@ -7,6 +7,7 @@ import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import { Button } from '../components/Button';
+import Layout from '../components/Layout';
 
 export default function LoginPage(props) {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -14,10 +15,7 @@ export default function LoginPage(props) {
   return (
     <>
       <Head>
-        <title>LOG IN</title>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <Layout title="LOG IN" />
       </Head>
 
       <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />

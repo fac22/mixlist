@@ -7,6 +7,7 @@ import { Header } from '../components/Header';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
+import Layout from '../components/Layout';
 
 export default function DiscoverPage() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -14,10 +15,7 @@ export default function DiscoverPage() {
   return (
     <>
       <Head>
-        <title>DISCOVER</title>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <Layout title="DISCOVER" />
       </Head>
 
       <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />

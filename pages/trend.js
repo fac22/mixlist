@@ -7,6 +7,7 @@ import { Header } from '../components/Header';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
+import Layout from '../components/Layout';
 
 export default function TrendPage() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -14,10 +15,7 @@ export default function TrendPage() {
   return (
     <>
       <Head>
-        <title>TREND</title>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <Layout title="TREND" />
       </Head>
 
       <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
