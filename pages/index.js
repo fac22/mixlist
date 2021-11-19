@@ -33,7 +33,7 @@ export default function Home() {
         />
         <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
           <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-            <section className="mt-40 mb-20">
+            <section className="mt-28 mb-20">
               <H2 color={'GREENT'}>DISCOVER</H2>
               <H2 color={'BLUET'}>YOUR NEXT</H2>
               <H2 color={'PINK'}>FAVOURITE</H2>

@@ -17,7 +17,6 @@ export default function ProfilePage() {
       <Head>
         <Layout title="PROFILE" />
       </Head>
-
       <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
       <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
       <Header
