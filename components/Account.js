@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import Avatar from './Avatar';
+import getProfile from '../utils/getProfile';
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true);
@@ -8,36 +9,45 @@ export default function Account({ session }) {
   const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
 
+  const setStateFunctions = {
+    setUsername,
+    setWebsite,
+    setAvatarUrl,
+    setLoading,
+  };
+
   useEffect(() => {
-    getProfile();
+    getProfile(setStateFunctions);
   }, [session]);
 
-  async function getProfile() {
-    try {
-      setLoading(true);
-      const user = supabase.auth.user();
+  // async function getProfile() {
+  //   try {
+  //     setLoading(true);
+  //     // Get JSON object for logged in user
+  //     const user = supabase.auth.user();
 
-      let { data, error, status } = await supabase
-        .from('profiles')
-        .select(`username, website, avatar_url`)
-        .eq('id', user.id)
-        .single();
+  //     //Data stores the information from the 'profiles' table
+  //     let { data, error, status } = await supabase
+  //       .from('profiles')
+  //       .select(`username, website, avatar_url`)
+  //       .eq('id', user.id)
+  //       .single();
 
-      if (error && status !== 406) {
-        throw error;
-      }
+  //     if (error && status !== 406) {
+  //       throw error;
+  //     }
 
-      if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
-      }
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  //     if (data) {
+  //       setUsername(data.username);
+  //       setWebsite(data.website);
+  //       setAvatarUrl(data.avatar_url);
+  //     }
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   async function updateProfile({ username, website, avatar_url }) {
     try {

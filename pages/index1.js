@@ -11,6 +11,9 @@ import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
+import getProfile from '../utils/getProfile';
+import { useState, useEffect } from 'react';
+import { supabase } from '../utils/supabaseClient';
 
 const settings = {
   initial: {
@@ -27,8 +30,34 @@ const settings = {
 };
 
 export default function Home() {
-  const [toggleMenu, setToggleMenu] = React.useState(false);
-  const [toggleSearch, setToggleSearch] = React.useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleSearch, setToggleSearch] = useState(false);
+
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(null);
+  const [website, setWebsite] = useState(null);
+  const [avatar_url, setAvatarUrl] = useState(null);
+
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  const setStateFunctions = {
+    setUsername,
+    setWebsite,
+    setAvatarUrl,
+    setLoading,
+  };
+
+  useEffect(() => {
+    getProfile(setStateFunctions);
+  }, [session]);
   return (
     <motion.div initial={'initial'} animate={'animate'} exit={{ opacity: 0 }}>
       <Head>
@@ -49,7 +78,7 @@ export default function Home() {
         <motion.div variants={settings}>
           <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
             <section className="mt-28 mb-20">
-              <H2 color={'GREENT'}>DISCOVER</H2>
+              <H2 color={'GREENT'}>{username || 'NO USER'}</H2>
               <H2 color={'BLUET'}>YOUR NEXT</H2>
               <H2 color={'PINK'}>FAVOURITE</H2>
               <H2 color={'PINKT'}>ALBUM</H2>
@@ -63,18 +92,18 @@ export default function Home() {
                 bgColorHover={'REDHOVER'}
                 type={'email'}
               />
-              <Input
+              {/* <Input
                 placeHolder="PASSWORD"
                 bgColor="BLUET"
                 textColor="DBLUE"
                 bgColorHover={'BLUEHOVER'}
                 type={'password'}
-              />
+              /> */}
               <Button
                 bgColor={'GREENT'}
                 textColor={'DGREEN'}
                 bgColorHover={'GREENHOVER'}
-                title={'SIGN UP'}
+                title={'SIGN UP OR LOGIN'}
                 route={'login'}
               />
             </section>
