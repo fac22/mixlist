@@ -1,86 +1,26 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import React from 'react';
-import { Button } from '../components/Button';
-import { Header } from '../components/Header';
-import { Main } from '../components/Main';
-import { H2 } from '../components/H2';
-import Input from '../components/Input';
-import Menu from '../components/Menu';
-import Search from '../components/Search';
-import { BackgroundWrapper } from '../components/BackgroundWrapper';
-import { motion } from 'framer-motion';
-import Layout from '../components/Layout';
-
-const settings = {
-  initial: {
-    opacity: 1,
-    x: 250,
-  },
-  animate: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
+import { useState, useEffect } from 'react';
+import { supabase } from '../utils/supabaseClient';
+import Auth from '../components/Auth';
+import Account from '../components/Account';
 
 export default function Home() {
-  const [toggleMenu, setToggleMenu] = React.useState(false);
-  const [toggleSearch, setToggleSearch] = React.useState(false);
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
   return (
-    <motion.div initial={'initial'} animate={'animate'} exit={{ opacity: 0 }}>
-      <Head>
-        <Layout title="MIXLIST" />
-      </Head>
-
-      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
-      <Header
-        toggleMenu={toggleMenu}
-        setToggleMenu={setToggleMenu}
-        toggleSearch={toggleSearch}
-        setToggleSearch={setToggleSearch}
-        textColor={'WHITE'}
-        content={'MIXLIST'}
-      />
-      <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <motion.div variants={settings}>
-          <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-            <section className="mt-28 mb-20">
-              <H2 color={'GREENT'}>DISCOVER</H2>
-              <H2 color={'BLUET'}>YOUR NEXT</H2>
-              <H2 color={'PINK'}>FAVOURITE</H2>
-              <H2 color={'PINKT'}>ALBUM</H2>
-            </section>
-
-            <section className="flex flex-col items-center justify-center">
-              <Input
-                placeHolder="EMAIL"
-                bgColor="REDT"
-                textColor="DRED"
-                bgColorHover={'REDHOVER'}
-                type={'email'}
-              />
-              <Input
-                placeHolder="PASSWORD"
-                bgColor="BLUET"
-                textColor="DBLUE"
-                bgColorHover={'BLUEHOVER'}
-                type={'password'}
-              />
-              <Button
-                bgColor={'GREENT'}
-                textColor={'DGREEN'}
-                bgColorHover={'GREENHOVER'}
-                title={'SIGN UP'}
-                route={'login'}
-              />
-            </section>
-          </Main>
-        </motion.div>
-      </BackgroundWrapper>
-    </motion.div>
+    <div className="container" style={{ padding: '50px 0 100px 0' }}>
+      {!session ? (
+        <Auth />
+      ) : (
+        <Account key={session.user.id} session={session} />
+      )}
+    </div>
   );
 }
