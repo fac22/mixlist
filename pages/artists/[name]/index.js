@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import Link from 'next/link';
 
-export default function Details() {
+function Details() {
   const router = useRouter();
-  const artist = router.query;
+  const artist = router.query.name;
 
   const [art, setArt] = React.useState();
   const [ta, setTa] = React.useState();
@@ -33,16 +33,16 @@ export default function Details() {
   if (!art || !ta) return <div>Loading...</div>;
   return (
     <>
-      <div className="text-WHITE align-center w-full p-5">
-        <h1>{art.name} page</h1>
+      <div className="text-WHITE align-center w-full h-full p-20">
+        <h1 className="align-center">{art.name} page</h1>
         <img src={`${art.image[1][`#text`]}`} alt="" />
         <p>{art.bio.summary.split('.')[0] + '.'}</p>
-        <h2>Top Albums</h2>
+        <h2 className="p-5">Top Albums</h2>
         {ta.slice(0, 10).map((e) => (
-          <div key={e.mbid}>
+          <div key={e.mbid} className="mt-5">
             <li>
               <Link
-                href="/artists/[name]/[track]"
+                href="/artists/[name]/[album]"
                 as={`/artists/${artist}/${e.name}`}
               >
                 {e.name}
@@ -55,3 +55,5 @@ export default function Details() {
     </>
   );
 }
+
+export default Details;
