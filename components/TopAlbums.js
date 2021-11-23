@@ -19,6 +19,7 @@ export default function TopAlbums() {
         );
       });
   }, []);
+  useEffect(() => {});
 
   //   topAlbums.sort(function (a, b) {
   //     return a.taggings.localeCompare(b.taggings);
