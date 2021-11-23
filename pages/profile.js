@@ -6,6 +6,7 @@ import { supabase } from '../utils/supabaseClient';
 import Avatar from '../components/Avatar';
 import getProfile from '../utils/getProfile';
 import getReviewsTotal from '../utils/getReviewsTotal';
+// import getAlbums from '../utils/getAlbums';
 import { Header } from '../components/Header';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
@@ -18,6 +19,8 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [reviewsTotal, setReviewsTotal] = useState(null);
+  const [followedAlbums, setFollowedAlbums] = useState(null);
+  const [ratings, setRatings] = useState(null);
   const [profile_img, setProfileImg] = useState(null);
 
   const [session, setSession] = useState(null);
@@ -35,6 +38,8 @@ export default function ProfilePage() {
     setProfileImg,
     setLoading,
     setReviewsTotal,
+    setFollowedAlbums,
+    setRatings,
   };
 
   useEffect(() => {
@@ -44,6 +49,9 @@ export default function ProfilePage() {
   useEffect(() => {
     getReviewsTotal(setReviewsTotal);
   }, [session]);
+  // useEffect(() => {
+  //   getAlbums(setUserAlbumsTotal);
+  // }, [session]);
 
   return (
     <>
@@ -65,6 +73,8 @@ export default function ProfilePage() {
           username={username}
           imageURL={profile_img}
           reviewsTotal={reviewsTotal}
+          followedAlbums={followedAlbums}
+          ratings={ratings}
         />
       </BackgroundWrapper>
     </>

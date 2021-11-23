@@ -4,6 +4,8 @@ export default async function getProfile({
   setUsername,
   setProfileImg,
   setLoading,
+  setFollowedAlbums,
+  setRatings,
 }) {
   try {
     setLoading(true);
@@ -13,9 +15,14 @@ export default async function getProfile({
     //Data stores the information from the 'profiles' table
     let { data, error, status } = await supabase
       .from('profiles')
-      .select(`username, profile_img`)
+      .select(`username, profile_img, followed_albums, rated_albums`)
       .eq('id', user.id)
       .single();
+
+    let followedAlbumsCount = Object.keys(data.followed_albums).length;
+
+    let ratingsCount =
+      Object.keys(data.rated_albums).length * 100 + followedAlbumsCount * 200;
 
     if (error && status !== 406) {
       throw error;
@@ -24,7 +31,8 @@ export default async function getProfile({
     if (data) {
       setUsername(data.username);
       setProfileImg(data.profile_img);
-
+      setFollowedAlbums(followedAlbumsCount);
+      setRatings(ratingsCount);
     }
   } catch (error) {
     alert(error.message);
