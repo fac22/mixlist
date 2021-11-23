@@ -2,7 +2,7 @@ import { supabase } from './supabaseClient';
 
 export default async function getProfile({
   setUsername,
-  setAvatarUrl,
+  setProfileImg,
   setLoading,
 }) {
   try {
@@ -23,7 +23,8 @@ export default async function getProfile({
 
     if (data) {
       setUsername(data.username);
-      setAvatarUrl(data.profile_img);
+      setProfileImg(data.profile_img);
+
     }
   } catch (error) {
     alert(error.message);

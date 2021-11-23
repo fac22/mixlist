@@ -1,3 +1,6 @@
+import { H3 } from './H3';
+import Image from 'next/image';
+
 export default function RecLogged(props) {
   const albumImgs = [
     {
@@ -21,18 +24,17 @@ export default function RecLogged(props) {
     },
   ];
   return (
-    <div className="">
-      <p className={`text-${props.loggedTitleColour} m-5 text-lg`}>
-        RECENTLY LOGGED
-      </p>
-      <div className="sm:grid-cols-3 grid grid-cols-3 m-auto">
+    <div className="mt-4">
+      <H3 color={props.loggedTitleColour}>RECENTLY LISTENED</H3>
+      <div className="sm: grid-cols-five grid gap-4 mt-4">
         {albumImgs.map((item) => (
-          <img
+          <Image
             src={item.src}
             alt=""
             key={item.id}
-            className="w-3/4 m-auto mb-3"
-          ></img>
+            width={99}
+            height={'100'}
+          ></Image>
         ))}
       </div>
     </div>

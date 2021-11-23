@@ -41,6 +41,11 @@ module.exports = {
       blur: {
         max: '50px',
       },
+      gridTemplateColumns: {
+        three: 'repeat(3, 100px)',
+        four: 'repeat(4, 60px)',
+        five: 'repeat(5, 50px)',
+      },
     },
   },
   variants: {

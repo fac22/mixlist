@@ -3,7 +3,7 @@ import FavAlbums from './FavAlbums';
 import RecReviews from './RecReviews';
 import RecLogged from './RecLogged';
 
-export default function Profile() {
+export default function Profile({ username, imageURL }) {
   const colours = {
     text: 'WHITE',
     username: 'BLUEPRO',
@@ -13,7 +13,11 @@ export default function Profile() {
   };
   return (
     <div className="text-WHITE p-5 mb-20">
-      <UserInfo userTitleColour={colours.username} />
+      <UserInfo
+        username={username}
+        userTitleColour={colours.username}
+        imageURL={imageURL}
+      />
       <FavAlbums favTitleColour={colours.favtitle} />
       <RecReviews reviewTitleColour={colours.reviewtitle} />
       <RecLogged loggedTitleColour={colours.loggedtitle} />

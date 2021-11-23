@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     //Data stores the information from the 'profiles' table
     let { data, error, status } = await supabase
       .from('profiles')
-      .select(`username, website, avatar_url`)
+      .select(`username, profile_img`)
       .eq('id', user.id)
       .single();
 
