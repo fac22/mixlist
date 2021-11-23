@@ -3,7 +3,7 @@ import FavAlbums from './FavAlbums';
 import RecReviews from './RecReviews';
 import RecLogged from './RecLogged';
 
-export default function Profile({ username, imageURL }) {
+export default function Profile({ username, imageURL, reviewsTotal }) {
   const colours = {
     text: 'WHITE',
     username: 'BLUEPRO',
@@ -17,6 +17,7 @@ export default function Profile({ username, imageURL }) {
         username={username}
         userTitleColour={colours.username}
         imageURL={imageURL}
+        reviewsTotal={reviewsTotal}
       />
       <FavAlbums favTitleColour={colours.favtitle} />
       <RecReviews reviewTitleColour={colours.reviewtitle} />
