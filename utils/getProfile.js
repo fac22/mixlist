@@ -24,6 +24,7 @@ export default async function getProfile({
     if (data) {
       setUsername(data.username);
       setProfileImg(data.profile_img);
+
     }
   } catch (error) {
     alert(error.message);
