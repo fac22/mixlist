@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import Avatar from '../components/Avatar';
 import getProfile from '../utils/getProfile';
+import getReviewsTotal from '../utils/getReviewsTotal';
 import { Header } from '../components/Header';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
@@ -16,6 +17,7 @@ export default function ProfilePage() {
   const [toggleSearch, setToggleSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
+  const [reviewsTotal, setReviewsTotal] = useState(null);
   const [profile_img, setProfileImg] = useState(null);
 
   const [session, setSession] = useState(null);
@@ -32,10 +34,15 @@ export default function ProfilePage() {
     setUsername,
     setProfileImg,
     setLoading,
+    setReviewsTotal,
   };
 
   useEffect(() => {
     getProfile(setStateFunctions);
+  }, [session]);
+
+  useEffect(() => {
+    getReviewsTotal(setReviewsTotal);
   }, [session]);
 
   return (
@@ -54,7 +61,11 @@ export default function ProfilePage() {
         content={'MIXLIST'}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <Profile username={username} imageURL={profile_img} />
+        <Profile
+          username={username}
+          imageURL={profile_img}
+          reviewsTotal={reviewsTotal}
+        />
       </BackgroundWrapper>
     </>
   );
