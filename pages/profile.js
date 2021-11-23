@@ -6,7 +6,6 @@ import { supabase } from '../utils/supabaseClient';
 import Avatar from '../components/Avatar';
 import getProfile from '../utils/getProfile';
 import getReviews from '../utils/getReviews';
-// import getAlbums from '../utils/getAlbums';
 import { Header } from '../components/Header';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
@@ -20,6 +19,7 @@ export default function ProfilePage() {
   const [username, setUsername] = useState(null);
   const [reviewsTotal, setReviewsTotal] = useState(null);
   const [followedAlbums, setFollowedAlbums] = useState(null);
+  const [usersReview, setUsersReview] = useState(null);
   const [ratings, setRatings] = useState(null);
   const [profile_img, setProfileImg] = useState(null);
 
@@ -40,6 +40,7 @@ export default function ProfilePage() {
     setReviewsTotal,
     setFollowedAlbums,
     setRatings,
+    setUsersReview,
   };
 
   useEffect(() => {
@@ -47,11 +48,8 @@ export default function ProfilePage() {
   }, [session]);
 
   useEffect(() => {
-    getReviews(setReviewsTotal);
+    getReviews({ setUsersReview, setReviewsTotal });
   }, [session]);
-  // useEffect(() => {
-  //   getAlbums(setUserAlbumsTotal);
-  // }, [session]);
 
   return (
     <>
@@ -75,6 +73,7 @@ export default function ProfilePage() {
           reviewsTotal={reviewsTotal}
           followedAlbums={followedAlbums}
           ratings={ratings}
+          usersReview={usersReview}
         />
       </BackgroundWrapper>
     </>

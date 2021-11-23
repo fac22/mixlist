@@ -2,7 +2,7 @@ import { H3 } from './H3';
 import { Review } from './Review';
 import Image from 'next/image';
 
-export default function RecReviews(props) {
+export default function RecReviews({ userReview }) {
   const albumImgs = [
     {
       id: 1,
@@ -29,6 +29,8 @@ export default function RecReviews(props) {
       <H3 color="BLUE">LATEST REVIEWS</H3>
       <ul className=" flex flex-col">
         <li className="sm:w-4/5 flex flex-col">
+          {}
+
           {albumImgs.slice(0, 2).map((item) => (
             <div className={`flex flex-row mt-2 mb-2`} key={props.id}>
               <Review
@@ -37,10 +39,7 @@ export default function RecReviews(props) {
                 username={'LEVEL87 (3123)'}
                 key={item.id}
               >
-                Something in this album is far more beautiful than sounds should
-                be able to convey. The album that accompanied the deepest and
-                most profound moments of my lockdown. Favorite track: Something
-                In The Sadness.
+                {userReview}
               </Review>
             </div>
           ))}
