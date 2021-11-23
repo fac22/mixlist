@@ -19,6 +19,8 @@ export default function Home() {
       {!session ? (
         <Auth />
       ) : (
+        // <Feed />
+        // include : new Al
         <Account key={session.user.id} session={session} />
       )}
     </div>

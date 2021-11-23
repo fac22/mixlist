@@ -14,6 +14,7 @@ import Layout from '../components/Layout';
 import getProfile from '../utils/getProfile';
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
+import { useRouter } from 'next/router';
 
 const settings = {
   initial: {
@@ -39,8 +40,14 @@ export default function Home() {
   const [avatar_url, setAvatarUrl] = useState(null);
 
   const [session, setSession] = useState(null);
+  const router = useRouter();
+
+  const sessionCheck = supabase.auth.session();
 
   useEffect(() => {
+    if (!sessionCheck) {
+      router.push('/search');
+    }
     setSession(supabase.auth.session());
 
     supabase.auth.onAuthStateChange((_event, session) => {
@@ -50,7 +57,6 @@ export default function Home() {
 
   const setStateFunctions = {
     setUsername,
-    setWebsite,
     setAvatarUrl,
     setLoading,
   };
