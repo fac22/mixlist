@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import Avatar from '../components/Avatar';
 import getProfile from '../utils/getProfile';
-import getReviewsTotal from '../utils/getReviewsTotal';
+import getReviews from '../utils/getReviews';
 // import getAlbums from '../utils/getAlbums';
 import { Header } from '../components/Header';
 import Menu from '../components/Menu';
@@ -47,7 +47,7 @@ export default function ProfilePage() {
   }, [session]);
 
   useEffect(() => {
-    getReviewsTotal(setReviewsTotal);
+    getReviews(setReviewsTotal);
   }, [session]);
   // useEffect(() => {
   //   getAlbums(setUserAlbumsTotal);

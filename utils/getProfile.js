@@ -19,10 +19,10 @@ export default async function getProfile({
       .eq('id', user.id)
       .single();
 
-    let followedAlbumsCount = Object.keys(data.followed_albums).length;
+    let followedAlbumsCount = data.followed_albums.followed.length;
 
     let ratingsCount =
-      Object.keys(data.rated_albums).length * 100 + followedAlbumsCount * 200;
+      data.rated_albums.rated.length * 100 + followedAlbumsCount * 200;
 
     if (error && status !== 406) {
       throw error;
