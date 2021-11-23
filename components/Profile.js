@@ -14,8 +14,8 @@ export default function Profile({ username, imageURL }) {
   return (
     <div className="text-WHITE p-5 mb-20">
       <UserInfo
-        userTitleColour={colours.username}
         username={username}
+        userTitleColour={colours.username}
         imageURL={imageURL}
       />
       <FavAlbums favTitleColour={colours.favtitle} />
