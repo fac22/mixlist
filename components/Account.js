@@ -6,13 +6,11 @@ import getProfile from '../utils/getProfile';
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
+  const [profile_img, setProfileImg] = useState(null);
 
   const setStateFunctions = {
     setUsername,
-    setWebsite,
-    setAvatarUrl,
+    setProfileImg,
     setLoading,
   };
 
@@ -20,36 +18,7 @@ export default function Account({ session }) {
     getProfile(setStateFunctions);
   }, [session]);
 
-  // async function getProfile() {
-  //   try {
-  //     setLoading(true);
-  //     // Get JSON object for logged in user
-  //     const user = supabase.auth.user();
-
-  //     //Data stores the information from the 'profiles' table
-  //     let { data, error, status } = await supabase
-  //       .from('profiles')
-  //       .select(`username, website, avatar_url`)
-  //       .eq('id', user.id)
-  //       .single();
-
-  //     if (error && status !== 406) {
-  //       throw error;
-  //     }
-
-  //     if (data) {
-  //       setUsername(data.username);
-  //       setWebsite(data.website);
-  //       setAvatarUrl(data.avatar_url);
-  //     }
-  //   } catch (error) {
-  //     alert(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-  async function updateProfile({ username, website, avatar_url }) {
+  async function updateProfile({ username, profile_img }) {
     try {
       setLoading(true);
       const user = supabase.auth.user();
@@ -57,8 +26,7 @@ export default function Account({ session }) {
       const updates = {
         id: user.id,
         username,
-        website,
-        avatar_url,
+        profile_img,
         updated_at: new Date(),
       };
 
@@ -77,16 +45,16 @@ export default function Account({ session }) {
   }
 
   return (
-    <div className="form-widget">
+    <div className="form-widget text-WHITE">
       <Avatar
-        url={avatar_url}
+        url={profile_img}
         size={150}
         onUpload={(url) => {
-          setAvatarUrl(url);
-          updateProfile({ username, website, avatar_url: url });
+          setProfileImg(url);
+          updateProfile({ username, profile_img: url });
         }}
       />
-      <div>
+      <div className="text-WHITE">
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
       </div>
@@ -99,20 +67,11 @@ export default function Account({ session }) {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
 
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={() => updateProfile({ username, profile_img })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}

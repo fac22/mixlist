@@ -2,8 +2,7 @@ import { supabase } from './supabaseClient';
 
 export default async function getProfile({
   setUsername,
-  setWebsite,
-  setAvatarUrl,
+  setProfileImg,
   setLoading,
 }) {
   try {
@@ -14,7 +13,7 @@ export default async function getProfile({
     //Data stores the information from the 'profiles' table
     let { data, error, status } = await supabase
       .from('profiles')
-      .select(`username, website, avatar_url`)
+      .select(`username, profile_img`)
       .eq('id', user.id)
       .single();
 
@@ -24,8 +23,7 @@ export default async function getProfile({
 
     if (data) {
       setUsername(data.username);
-      setWebsite(data.website);
-      setAvatarUrl(data.avatar_url);
+      setProfileImg(data.profile_img);
     }
   } catch (error) {
     alert(error.message);

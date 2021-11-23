@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Profile from '../components/Profile';
-
+import H2 fr
 import { Header } from '../components/Header';
 
 import Menu from '../components/Menu';
@@ -26,10 +26,15 @@ export default function DiscoverPage() {
         toggleSearch={toggleSearch}
         setToggleSearch={setToggleSearch}
         textColor={'WHITE'}
-        content={'DISCOVER'}
+        content={'MIXLIST'}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <h1 className="text-WHITE">DISCOVER</h1>
+        <section className="mt-28 mb-20">
+          <H2 color={'GREENT'}>DISCOVER</H2>
+          <H2 color={'BLUET'}>YOUR NEXT</H2>
+          <H2 color={'PINK'}>FAVOURITE</H2>
+          <H2 color={'PINKT'}>ALBUM</H2>
+        </section>
       </BackgroundWrapper>
     </>
   );

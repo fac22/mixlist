@@ -1,3 +1,6 @@
+import { H3 } from './H3';
+import Image from 'next/image';
+
 export default function FavAlbums(props) {
   const albumImgs = [
     {
@@ -21,18 +24,17 @@ export default function FavAlbums(props) {
     },
   ];
   return (
-    <div className="">
-      <p className={`text-${props.favTitleColour} text-lg m-5 `}>
-        FAVOURITE ALBUMS
-      </p>
-      <div className="grid grid-cols-2 sm:grid-cols-3">
+    <div className="mt-4">
+      <H3 color={props.favTitleColour}>COLLECTION</H3>
+      <div className="sm:grid-cols-3 grid grid-cols-3 gap-4 mt-4">
         {albumImgs.map((item) => (
-          <img
+          <Image
             src={item.src}
             alt=""
             key={item.id}
-            className="w-3/4 m-auto mb-5"
-          ></img>
+            width={99}
+            height={'100'}
+          ></Image>
         ))}
       </div>
     </div>

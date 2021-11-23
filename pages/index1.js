@@ -32,7 +32,6 @@ const settings = {
 export default function Home() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
-
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [website, setWebsite] = useState(null);
@@ -58,6 +57,7 @@ export default function Home() {
   useEffect(() => {
     getProfile(setStateFunctions);
   }, [session]);
+
   return (
     <motion.div initial={'initial'} animate={'animate'} exit={{ opacity: 0 }}>
       <Head>
@@ -78,7 +78,7 @@ export default function Home() {
         <motion.div variants={settings}>
           <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
             <section className="mt-28 mb-20">
-              <H2 color={'GREENT'}>{username || 'NO USER'}</H2>
+              <H2 color={'GREENT'}>DISCOVER</H2>
               <H2 color={'BLUET'}>YOUR NEXT</H2>
               <H2 color={'PINK'}>FAVOURITE</H2>
               <H2 color={'PINKT'}>ALBUM</H2>
@@ -92,19 +92,13 @@ export default function Home() {
                 bgColorHover={'REDHOVER'}
                 type={'email'}
               />
-              {/* <Input
-                placeHolder="PASSWORD"
-                bgColor="BLUET"
-                textColor="DBLUE"
-                bgColorHover={'BLUEHOVER'}
-                type={'password'}
-              /> */}
+
               <Button
                 bgColor={'GREENT'}
                 textColor={'DGREEN'}
                 bgColorHover={'GREENHOVER'}
-                title={'SIGN UP OR LOGIN'}
-                route={'login'}
+                title={'SIGN UP / LOGIN'}
+                route={'checkemail'}
               />
             </section>
           </Main>

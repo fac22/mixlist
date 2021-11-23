@@ -25,7 +25,7 @@ export default function ProfilePage() {
         toggleSearch={toggleSearch}
         setToggleSearch={setToggleSearch}
         textColor={'WHITE'}
-        content={'MYPROFILE'}
+        content={'MIXLIST'}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <Profile />
