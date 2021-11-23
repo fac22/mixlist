@@ -5,9 +5,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import Avatar from '../components/Avatar';
 import getProfile from '../utils/getProfile';
-
 import { Header } from '../components/Header';
-
 import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
