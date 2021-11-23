@@ -27,7 +27,7 @@ export default function RecReviews(props) {
   return (
     <div className="mt-4">
       <H3 color="BLUE">LATEST REVIEWS</H3>
-      <ul className="flex flex-col mt-2">
+      <ul className=" flex flex-col">
         <li className="sm:w-4/5 flex flex-col">
           {albumImgs.slice(0, 2).map((item) => (
             <div className={`flex flex-row mt-2 mb-2`} key={props.id}>

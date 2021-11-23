@@ -25,8 +25,8 @@ export default function FavAlbums(props) {
   ];
   return (
     <div className="mt-4">
-      <H3 color={props.favTitleColour}>COLLECTION</H3>
-      <div className="sm:grid-cols-3 grid grid-cols-3 gap-4 mt-4">
+      <H3 color={props.favTitleColour}>FAVOURITES</H3>
+      <div className="sm: grid-cols-three grid gap-4 mt-4">
         {albumImgs.map((item) => (
           <Image
             src={item.src}
