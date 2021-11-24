@@ -3,8 +3,6 @@ import { Review } from './Review';
 import Image from 'next/image';
 
 export default function RecReviews({ usersReview, usersReviewArtwork }) {
-  const albumImgs = [];
-  const reviewArray = usersReview;
   return (
     <div className="mt-4">
       <H3 color="BLUE">LATEST REVIEWS</H3>
@@ -22,23 +20,7 @@ export default function RecReviews({ usersReview, usersReviewArtwork }) {
             {e[0]}
           </Review>
         ))}
-        {/* {usersReview} */}
       </ul>
-
-      {/* {usersReview.slice(0, 2).map((item) => (
-            <div className={`flex flex-row mt-2 mb-2`} key={item.id}>
-              <Review
-                image={'http://1.png'}
-                alt={'Album Art'}
-                username={'LEVEL87 (3123)'}
-                key={item.id}
-              >
-                {item}
-              </Review>
-            </div>
-          ))} */}
-      {/* </li>
-      </ul> */}
     </div>
   );
 }
