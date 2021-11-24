@@ -1,26 +1,28 @@
-// import { supabase } from './supabaseClient';
+import { supabase } from './supabaseClient';
 
-// export default async function getAlbums(setUserAlbumsTotal) {
-//   try {
-//     // Get JSON object for logged in user
-//     const user = supabase.auth.user();
+export default async function getAlbums({ setUserFavAlbums }) {
+  try {
+    // Get JSON object for logged in user
+    const user = supabase.auth.user();
 
-//     //Data stores the information from the 'reviews' table
+    //Data stores the information from the 'reviews' table
 
-//     let { data, error, status } = await supabase
-//       .from('albums')
-//       .select('*')
-//       .eq(`user_id`, user.id, { count: 'exact' });
+    let { data, error, status } = await supabase
+      .from('ALBUMS')
+      .select('*')
+      .eq('fav_user', user.id);
 
-//     console.log('useralbumsdata', data.length);
-//     if (error && status !== 406) {
-//       throw error;
-//     }
+    const favAlbum = data.map((e) => e.src);
+    console.log({ favAlbum });
 
-//     if (data) {
-//       setUserAlbumsTotal(data.length);
-//     }
-//   } catch (error) {
-//     alert(error.message);
-//   }
-// }
+    if (error && status !== 406) {
+      throw error;
+    }
+
+    if (data) {
+      setUserFavAlbums(favAlbum);
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+}

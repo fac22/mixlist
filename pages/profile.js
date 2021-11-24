@@ -6,7 +6,7 @@ import { supabase } from '../utils/supabaseClient';
 import Avatar from '../components/Avatar';
 import getProfile from '../utils/getProfile';
 import getReviews from '../utils/getReviews';
-// import getAlbums from '../utils/getAlbums';
+import getAlbums from '../utils/getAlbums';
 
 import { Header } from '../components/Header';
 import Menu from '../components/Menu';
@@ -23,13 +23,14 @@ export default function ProfilePage() {
   const [followedAlbums, setFollowedAlbums] = useState(null);
   const [usersReview, setUsersReview] = useState([]);
   const [usersReviewArtwork, setUsersReviewArtwork] = useState([]);
+  const [userFavAlbums, setUserFavAlbums] = useState([]);
 
   const [ratings, setRatings] = useState(null);
   const [profile_img, setProfileImg] = useState(null);
 
   const [session, setSession] = useState(null);
 
-  console.log({ usersReviewArtwork });
+  console.log({ userFavAlbums });
   useEffect(() => {
     setSession(supabase.auth.session());
 
@@ -54,9 +55,9 @@ export default function ProfilePage() {
     getReviews({ setUsersReview, setReviewsTotal, setUsersReviewArtwork });
   }, [session]);
 
-  // useEffect(() => {
-  //   getAlbums({ setUsersReviewArtwork });
-  // }, [session]);
+  useEffect(() => {
+    getAlbums({ setUserFavAlbums });
+  }, [session]);
 
   return (
     <>
@@ -82,6 +83,7 @@ export default function ProfilePage() {
           ratings={ratings}
           usersReview={usersReview}
           usersReviewArtwork={usersReviewArtwork}
+          userFavAlbums={userFavAlbums}
         />
       </BackgroundWrapper>
     </>
