@@ -11,6 +11,7 @@ export default function Profile({
   ratings,
   usersReview,
   usersReviewArtwork,
+  userFavAlbums,
 }) {
   const colours = {
     text: 'WHITE',
@@ -29,7 +30,10 @@ export default function Profile({
         followedAlbums={followedAlbums}
         ratings={ratings}
       />
-      <FavAlbums favTitleColour={colours.favtitle} />
+      <FavAlbums
+        favTitleColour={colours.favtitle}
+        userFavAlbums={userFavAlbums}
+      />
       <RecReviews
         reviewTitleColour={colours.reviewtitle}
         usersReview={usersReview}
