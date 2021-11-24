@@ -12,7 +12,6 @@ export default function Account({ session }) {
     setUsername,
     setProfileImg,
     setLoading,
-    setFollowedAlbums,
   };
 
   useEffect(() => {
