@@ -44,6 +44,8 @@ We have put a strong emphasis on clean, readable UI and straightforward semantic
 
 <!-- What would you do differently next time? -->
 
+TBD
+
 ## Research and findings
 
 <!-- What did you find out from user testing? -->
@@ -58,45 +60,74 @@ From our user testing of a Figma prototype:
 
 <!-- Were your assumptions right or wrong? -->
 
+TBD
+
 ## Recommendations and conclusions
 
 <!-- What features would you prioritise to build next? -->
 <!-- Was the project a success? -->
 
+TBD
+
 ## Software Development Lifecycle stages
 
 ### Planning
 
-What roles did your team take on?
+<!-- What roles did your team take on?
+Explain the roles and responsibilities of all people working within the software development lifecycle, and how they relate to the project (K2) -->
 
 #### ⏰ Scrum: Sasha
 
+Sasha was initially in charge of planning sprints, unfortunately some personal issues interfered with this task and from then on decisionmaking was shared between the group.
+
 #### ⛑ QA: Cemal
+
+Cemal was in charge of Quality Assurance, making sure to test that the user stories were able to be satisfactorily completed.
 
 #### 🏗 DevOps: Michael
 
+Michael was in charge of Deployment, and decided what we were going to use to build the app, where it was going to be hosted, and ensured that it successfully deployed to Vercel.
+
 #### 🖌 UX: Jihye
 
-Explain the roles and responsibilities of all people working within the software development lifecycle, and how they relate to the project (K2)
+Jihye was in charge of User Experience, ensuring that the site was written with the user in mind, and that navigating the website was a logical process.
 
-Did these roles help your team work effectively?
-Outline how teams work effectively to produce software and how to contribute appropriately (K6)
+<!-- Did these roles help your team work effectively?
+Outline how teams work effectively to produce software and how to contribute appropriately (K6) -->
+
+Separating the roles of the team and making them the responsibility of each member made sure that we never overextended ourselves by worrying too much about each other's roles, so we could focus on our own thing - however we were all happy to work on each others' tasks, as long as the role holder was willing to take point.
+
 Compare and contrast the requirements of a software development team, and how they would ensure that each member (including themselves) were able to make a contribution (K6)
 
 ### Analysis
 
-What might be the intended and unintended consequences of building this product?
+<!-- What might be the intended and unintended consequences of building this product? -->
+
+We hoped that on building this product, users would relate to their music consumption a little differently, and be more wary of Spotify's buisiness model. We were conscious of the fact that we might have created a space that could foster gatekeeping or elitism, which was not our goal, and were wary of heaping _another_ social networking site onto users.
 
 ### Design
 
-How did you plan a user experience?
-What technical decisions did you make?
+<!-- How did you plan a user experience? -->
+
+We worked on a shared Miro board and planned the most straightforward route through the site to fulfil each user story we came up with. When working on our figma prototype we made sure that each story could be completed with as few clicks as possible, in an intuitive manner.
+
+<!-- What technical decisions did you make?
 Server-render vs client-render vs both
 Relational or non-relational or no DB
 Self-hosted or platform-as-a-service
-Frontend first vs DB first
-Did you create a technical specification?
-Review methods of software design with reference to functional/technical specifications and apply a justified approach to software development (K11, S11, S12)
+Frontend first vs DB first -->
+
+We decided that
+
+- server-side rendering made sense for all of our API requests
+- a relational database was the most appropriate way to store user data that included profiles, albums, album reviews and a users' followers,
+- cloud hosting would allow the project to scale up if it took off
+- We wanted the product to be as desirable to a user as possible so we worked on the frontend first.
+
+<!-- Did you create a technical specification?
+Review methods of software design with reference to functional/technical specifications and apply a justified approach to software development (K11, S11, S12) -->
+
+We made sure that our Miro board had a tech spec that we could refer back to when we were adding features to our site. We tried to forsee what would be required to (for example) add a user to your 'following' list, what SQL queries were likely to be needed and how the tables would have to reference each other in order to modify/display taht data.
 
 ### Implementation/Build
 
@@ -116,7 +147,7 @@ Apply structured techniques to problem solving to identify and resolve issues an
 <!-- How did you verify your project worked correctly?
 Identify and create test scenarios which satisfy the project specification (S6) -->
 
-We figured out user stories ('I can log in to the app from the homepage', 'I am able to change my profile name and see it on my profile page', etc) that an imaginary user might like to do in the day-to-day usage of our site, and then ran the tests using Cypress. Using TTD practices we rewrote our code until the tests were able to pass.
+We figured out user stories ('I can log in to the app from the homepage', 'I am able to change my profile name and see it on my profile page', etc) that an imaginary user might like to do in the day-to-day usage of our site, and then ran the tests using Cypress. Using TDD practices we rewrote our code until the tests were able to pass.
 
 <!-- Did writing automated tests catch any bugs?
 Analyse unit testing results and review the outcomes, correcting errors. (S4) -->
@@ -125,15 +156,19 @@ Some of the automated tests we ran on Cypress behaved in a way we did not antici
 
 ### Deploy
 
-Where/how did you deploy your application?
-Review and justify their contribution to building, managing and deploying code into the relevant environment in accordance with the project specification (S10)
+<!-- Where/how did you deploy your application?
+Review and justify their contribution to building, managing and deploying code into the relevant environment in accordance with the project specification (S10) -->
+
+We were impressed with the way that nextjs handled dynamic page creation, as well as the efficiency with which it loaded static props, so we decided to use it, and deploy to Vercel. The continuous integration with Github was also a factor in deciding to use nextjs.
 
 What problems did you encounter during deployment?
 
 ### Maintain
 
-Is it easy for someone make changes to the codebase?
-Establishes a logical thinking approach to areas of work which require valid reasoning and/or justified decision making (B2)
+<!-- Is it easy for someone make changes to the codebase?
+Establishes a logical thinking approach to areas of work which require valid reasoning and/or justified decision making (B2) -->
+
+It is easy to modify parts of the codebase without affecting others, because wherever possible we have tried to build every function or path as a standalone file - this means that if a function had to be changed, it (best case scenario) wouldn't screw up the rest of the codebase.
 
 <!-- Could a new person quickly be onboarded to contribute?
 Describes how they have maintained a productive, professional and secure working environment throughout the project activity (B3) -->
