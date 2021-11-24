@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Search({ search, setSearch, result }) {
+export default function AlbumSearch({ search, setSearch, result }) {
   return (
     <article>
       <form
