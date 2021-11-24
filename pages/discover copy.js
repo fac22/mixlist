@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Profile from '../components/Profile';
-import H2 fr
+import { H2 } from '../components/H2';
 import { Header } from '../components/Header';
 
 import Menu from '../components/Menu';
