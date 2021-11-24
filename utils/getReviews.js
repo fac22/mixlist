@@ -20,7 +20,7 @@ export default async function getReviews({ setUsersReview, setReviewsTotal }) {
     }
 
     if (data) {
-      setUsersReview('bla');
+      setUsersReview(reviewsArray);
       setReviewsTotal(reviewsArray.length);
       // setUSerReviewID;
     }

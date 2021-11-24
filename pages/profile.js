@@ -19,7 +19,7 @@ export default function ProfilePage() {
   const [username, setUsername] = useState(null);
   const [reviewsTotal, setReviewsTotal] = useState(null);
   const [followedAlbums, setFollowedAlbums] = useState(null);
-  const [usersReview, setUsersReview] = useState(null);
+  const [usersReview, setUsersReview] = useState([]);
   const [ratings, setRatings] = useState(null);
   const [profile_img, setProfileImg] = useState(null);
 
@@ -37,10 +37,8 @@ export default function ProfilePage() {
     setUsername,
     setProfileImg,
     setLoading,
-    setReviewsTotal,
     setFollowedAlbums,
     setRatings,
-    setUsersReview,
   };
 
   useEffect(() => {
@@ -51,6 +49,7 @@ export default function ProfilePage() {
     getReviews({ setUsersReview, setReviewsTotal });
   }, [session]);
 
+  console.log('1', usersReview);
   return (
     <>
       <Head>
@@ -74,6 +73,10 @@ export default function ProfilePage() {
           followedAlbums={followedAlbums}
           ratings={ratings}
           usersReview={usersReview}
+          // usersReview={usersReview.map((e) => {
+          //   `<li>${e}</li>`;
+          // })
+          // }
         />
       </BackgroundWrapper>
     </>
