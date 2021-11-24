@@ -54,6 +54,7 @@ export default function Account({ session }) {
           updateProfile({ username, profile_img: url });
         }}
       />
+
       <div className="text-WHITE">
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />

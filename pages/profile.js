@@ -52,6 +52,7 @@ export default function ProfilePage() {
         setToggleSearch={setToggleSearch}
         textColor={'WHITE'}
         content={'MIXLIST'}
+        session={session}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <Profile username={username} imageURL={profile_img} />

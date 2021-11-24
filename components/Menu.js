@@ -12,7 +12,7 @@ export default function Menu(props) {
         }`}
       >
         <ul className="align-center absolute flex flex-col justify-center w-full h-full h-screen text-2xl opacity-100">
-          {menuOptions.homeLoggedOut.map((item) => (
+          {menuOptions.homeLoggedIn.map((item) => (
             <MenuItem
               key={item.id}
               title={item.title}
