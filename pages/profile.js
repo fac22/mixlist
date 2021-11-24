@@ -6,6 +6,8 @@ import { supabase } from '../utils/supabaseClient';
 import Avatar from '../components/Avatar';
 import getProfile from '../utils/getProfile';
 import getReviews from '../utils/getReviews';
+// import getAlbums from '../utils/getAlbums';
+
 import { Header } from '../components/Header';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
@@ -20,11 +22,14 @@ export default function ProfilePage() {
   const [reviewsTotal, setReviewsTotal] = useState(null);
   const [followedAlbums, setFollowedAlbums] = useState(null);
   const [usersReview, setUsersReview] = useState([]);
+  const [usersReviewArtwork, setUsersReviewArtwork] = useState([]);
+
   const [ratings, setRatings] = useState(null);
   const [profile_img, setProfileImg] = useState(null);
 
   const [session, setSession] = useState(null);
 
+  console.log({ usersReviewArtwork });
   useEffect(() => {
     setSession(supabase.auth.session());
 
@@ -46,10 +51,13 @@ export default function ProfilePage() {
   }, [session]);
 
   useEffect(() => {
-    getReviews({ setUsersReview, setReviewsTotal });
+    getReviews({ setUsersReview, setReviewsTotal, setUsersReviewArtwork });
   }, [session]);
 
-  console.log('1', usersReview);
+  // useEffect(() => {
+  //   getAlbums({ setUsersReviewArtwork });
+  // }, [session]);
+
   return (
     <>
       <Head>
@@ -73,10 +81,7 @@ export default function ProfilePage() {
           followedAlbums={followedAlbums}
           ratings={ratings}
           usersReview={usersReview}
-          // usersReview={usersReview.map((e) => {
-          //   `<li>${e}</li>`;
-          // })
-          // }
+          usersReviewArtwork={usersReviewArtwork}
         />
       </BackgroundWrapper>
     </>
