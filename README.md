@@ -41,10 +41,9 @@ We have put a strong emphasis on clean, readable UI and straightforward semantic
 ## Project learnings
 
 <!-- Did your team work effectively? -->
-
 <!-- What would you do differently next time? -->
 
-TBD
+The team was able to work both in pairs and individually, making sure that we were working as efficiently as possible. At some point splitting off into four meant that there were parts of the website that some people on the team were unfamiliar with, and had we more time, I would have discouraged this, but it worked out more or less ok.
 
 ## Research and findings
 
@@ -60,14 +59,14 @@ From our user testing of a Figma prototype:
 
 <!-- Were your assumptions right or wrong? -->
 
-TBD
+It's hard to say how right or wrong our assumptions were without having a base of users to test the end product, but I think that we were pretty accurate about our user profiles based on the focus testing we did, so I don't have much of a reason to doubt that our judgement was pretty fair.
 
 ## Recommendations and conclusions
 
 <!-- What features would you prioritise to build next? -->
 <!-- Was the project a success? -->
 
-TBD
+We would have liked to build a 'hot 100' list of albums that had had a lot of activity (likes, reviews, listens) on our page. Overall I'm happy with what we were able to achieve and how quickly we were able to build it.
 
 ## Software Development Lifecycle stages
 
@@ -94,10 +93,9 @@ Jihye was in charge of User Experience, ensuring that the site was written with 
 
 <!-- Did these roles help your team work effectively?
 Outline how teams work effectively to produce software and how to contribute appropriately (K6) -->
+<!-- Compare and contrast the requirements of a software development team, and how they would ensure that each member (including themselves) were able to make a contribution (K6) -->
 
 Separating the roles of the team and making them the responsibility of each member made sure that we never overextended ourselves by worrying too much about each other's roles, so we could focus on our own thing - however we were all happy to work on each others' tasks, as long as the role holder was willing to take point.
-
-Compare and contrast the requirements of a software development team, and how they would ensure that each member (including themselves) were able to make a contribution (K6)
 
 ### Analysis
 
@@ -139,8 +137,10 @@ We tried wherever possible to ensure that our code was modular and consistently 
 What interesting technical problems did you have to solve?
 Outline and apply the rationale and use of algorithms, logic and data structures. (K9, S16)
 
-How did you debug issues that arose?
-Apply structured techniques to problem solving to identify and resolve issues and debug basic flaws in code (S7)
+<!-- How did you debug issues that arose?
+Apply structured techniques to problem solving to identify and resolve issues and debug basic flaws in code (S7) -->
+
+To quickly and efficiently debug issues we ensured wherever possible that we were working in pairs, with one person taking point and writing the code, and the other person watching the other person for typos, and moving around the file structure in live share to find potential conflicts.
 
 ### Test
 
@@ -162,6 +162,7 @@ Review and justify their contribution to building, managing and deploying code i
 We were impressed with the way that nextjs handled dynamic page creation, as well as the efficiency with which it loaded static props, so we decided to use it, and deploy to Vercel. The continuous integration with Github was also a factor in deciding to use nextjs.
 
 What problems did you encounter during deployment?
+Trying to deploy to vercel made us aware of a few errors in our code that weren't apparent in dev builds.
 
 ### Maintain
 
