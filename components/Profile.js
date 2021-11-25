@@ -3,7 +3,17 @@ import FavAlbums from './FavAlbums';
 import RecReviews from './RecReviews';
 import RecLogged from './RecLogged';
 
-export default function Profile({ username, imageURL, setUsername }) {
+export default function Profile({
+  username,
+  imageURL,
+  reviewsTotal,
+  followedAlbums,
+  ratings,
+  usersReview,
+  usersReviewArtwork,
+  userFavAlbums,
+}) {
+
   const colours = {
     text: 'WHITE',
     username: 'BLUEPRO',
@@ -17,10 +27,24 @@ export default function Profile({ username, imageURL, setUsername }) {
         username={username}
         userTitleColour={colours.username}
         imageURL={imageURL}
+
         setUsername={setUsername}
       />
-      <FavAlbums favTitleColour={colours.favtitle} />
-      <RecReviews reviewTitleColour={colours.reviewtitle} />
+
+        reviewsTotal={reviewsTotal}
+        followedAlbums={followedAlbums}
+        ratings={ratings}
+      />
+      <FavAlbums
+        favTitleColour={colours.favtitle}
+        userFavAlbums={userFavAlbums}
+      />
+      <RecReviews
+        reviewTitleColour={colours.reviewtitle}
+        usersReview={usersReview}
+        usersReviewArtwork={usersReviewArtwork}
+      />
+      <RecLogged loggedTitleColour={colours.loggedtitle} />
     </div>
   );
 }
