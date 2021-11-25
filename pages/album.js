@@ -14,7 +14,6 @@ import { P } from '../components/P';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import { BiLike } from 'react-icons/bi';
 import { BiPlus } from 'react-icons/bi';
-import { Review } from '../components/Review';
 import InputTextArea from '../components/InputTextArea';
 import Layout from '../components/Layout';
 import { ReviewComp } from '../components/ReviewComp';
