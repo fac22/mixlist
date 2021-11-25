@@ -21,21 +21,20 @@ const ArtistAlbum = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   const [reviews, setReviews] = React.useState(null);
-  const [artistID, setArtistID] = React.useState(null);
-  const [albumID, setAlbumID] = React.useState(null);
+  const [artistID, setArtistID] = React.useState(1);
+  const [albumID, setAlbumID] = React.useState(1);
   const textInput = React.createRef();
 
   const router = useRouter();
   const { name, album } = router.query;
 
-  const [albInfo, setAlbInfo] = React.useState();
-  const [userWroteRiviews, setUserWroteRiviews] = React.useState();
+  const [albInfo, setAlbInfo] = React.useState(null);
+  const [userWroteRiviews, setUserWroteRiviews] = React.useState('');
   const user = supabase.auth.user();
 
   React.useEffect(() => {
-    // if (albInfo === undefined || albInfo === '') {
-    //   return;
-    // }
+    getReviews().then((data) => setReviews(data));
+    console.log({ reviews });
     fetch(
       `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=e836ddbce95921744c7e9efe110bcd54&format=json&artist=${name}&album=${album}&format=json`
     )
@@ -43,83 +42,80 @@ const ArtistAlbum = () => {
       .then((data) => {
         setAlbInfo(data.album);
       });
-    getReviews().then((data) => setReviews(data));
+    console.log(albInfo, userWroteRiviews);
 
-    getArtistID();
-    getAlbumID();
-  }, [album]);
-
-  if (!albInfo || albInfo.artist === 'Undefined') return <div>Loading...</div>;
-  // console.log(albInfo.tracks.track[0]);
+    if (albInfo !== null && userWroteRiviews !== '') {
+      getAlbumID();
+      getArtistID();
+      if (albumID && artistID) {
+        updateReview();
+        setUserWroteRiviews('');
+      }
+    }
+  }, [album, userWroteRiviews]);
 
   async function getReviews() {
     let { data, error } = await supabase.rpc('get_albumreview', {
       album: album,
       artist: name,
     });
+    console.log(data);
     if (error) console.error(error);
     else return data;
   }
 
   async function updateReview() {
-    try {
-      const { error } = await supabase.from('reviews').insert({
-        review: userWroteRiviews,
-        album_id: albumID,
-        user_id: user.id,
-        artist_id: artistID,
-      });
-      if (error) {
-        throw error;
-      }
-    } catch (error) {
-      alert(error.message);
-    }
+    let { error } = await supabase.from('reviews').insert({
+      review: userWroteRiviews,
+      album_id: albumID,
+      user_id: user.id,
+      artist_id: artistID,
+    });
+    console.log('updating');
+    if (error) console.error(error);
   }
 
   async function getArtistID() {
-    try {
-      let { data, error, status } = await supabase
-        .from('ARTIST')
-        .select('id')
-        .eq(`artist_name`, name);
+    let { data, error, status } = await supabase
+      .from('ARTIST')
+      .select('id')
+      .eq(`artist_name`, name);
+    if (error) console.error(error);
 
-      if (error && status !== 406) {
-        throw error;
-      }
-      if (data) {
-        setArtistID(data[0].id);
-      }
-    } catch (error) {
-      alert(error.message);
+    console.log('get artist', data);
+    if (data) {
+      setArtistID(data[0].id);
     }
   }
+
   async function getAlbumID() {
-    try {
-      let { data, error, status } = await supabase
-        .from('ALBUMS')
-        .select('id')
-        .eq(`album_name`, album);
+    let { data, error, status } = await supabase
+      .from('ALBUMS')
+      .select('id')
+      .eq(`album_name`, album);
+    console.log('get album', data);
+    if (error) console.error(error);
 
-      console.log(data);
-      if (error && status !== 406) {
-        throw error;
-      }
-      if (data) {
-        setAlbumID(data[0].id);
-      }
-    } catch (error) {
-      alert(error.message);
+    if (data) {
+      setAlbumID(data[0].id);
     }
   }
+
+  if (
+    !albInfo ||
+    albInfo.artist === 'Undefined' ||
+    reviews === null ||
+    artistID === null ||
+    albumID === null
+  )
+    return <div>Loading...</div>;
 
   return (
     <>
       <Head>
         <Layout title={name} />
       </Head>
-      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
+
       <Header
         toggleMenu={toggleMenu}
         setToggleMenu={setToggleMenu}
@@ -128,6 +124,8 @@ const ArtistAlbum = () => {
         textColor={'WHITE'}
         content={'MIXLIST'}
       />
+      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
+      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
           <section className="mt-14 mb-2">
@@ -168,25 +166,12 @@ const ArtistAlbum = () => {
           <section className="divide-dotted divide-BLUET grid grid-cols-1 divide-y">
             <article className="pt-4">
               <H3 color={'PINKT'}>ADD REVIEW</H3>
-              {/* <InputTextArea
-                placeHolder="YOUR REVIEW HERE..."
-                bgColor="PINKT"
-                textColor="DPINK"
-                bgColorHover={'PINKHOVER'}
-                type={'textarea'}
-              /> */}
-              <textarea
-                ref={textInput}
-                onSubmit={(e) => {
-                  setUserWroteRiviews(e.target.value);
-                  updateReview();
-                }}
-              ></textarea>
+
+              <textarea ref={textInput}></textarea>
               <button
                 className="text-PINKT "
                 onClick={(e) => {
-                  setUserWroteRiviews(textInput.value);
-                  updateReview();
+                  setUserWroteRiviews(textInput.current.value);
                   textInput.current.value = '';
                 }}
               >
@@ -194,34 +179,10 @@ const ArtistAlbum = () => {
               </button>
 
               <p>{userWroteRiviews}</p>
-
-              {/* <Button
-                bgColor="PINKT"
-                textColor="DPINK"
-                bgColorHover={'PINKHOVER'}
-                title={'REVIEW'}
-
-              /> */}
             </article>
           </section>
         </Main>
       </BackgroundWrapper>
-      {/* <div className="text-WHITE align-center w-full h-full p-20">
-        <img src={`${albInfo.image[4][`#text`]}`} alt="" />
-        <h1>{album}</h1>
-        <h1>by {name}</h1>
-        {albInfo.wiki.published ? (
-          <h2>Released: {albInfo.wiki.published.split(',')[0]}</h2>
-        ) : (
-          ''
-        )}
-
-        {albInfo.tags.tag.map((song) => {
-          <li>{song.name}</li>;
-        })}
-
-        <span>{albInfo.tracks.track[0].name}</span>
-      </div> */}
     </>
   );
 };
