@@ -101,22 +101,21 @@ const ArtistAlbum = () => {
     }
   }
 
-  // if (
-  //   !albInfo ||
-  //   albInfo.artist === 'Undefined' ||
-  //   reviews === null ||
-  //   artistID === null ||
-  //   albumID === null
-  // )
-  //   return <div>Loading...</div>;
+  if (
+    !albInfo ||
+    albInfo.artist === 'Undefined' ||
+    reviews === null ||
+    artistID === null ||
+    albumID === null
+  )
+    return <div>Loading...</div>;
 
   return (
     <>
       <Head>
         <Layout title={name} />
       </Head>
-      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
+
       <Header
         toggleMenu={toggleMenu}
         setToggleMenu={setToggleMenu}
@@ -125,6 +124,8 @@ const ArtistAlbum = () => {
         textColor={'WHITE'}
         content={'MIXLIST'}
       />
+      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
+      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
           <section className="mt-14 mb-2">
@@ -176,6 +177,8 @@ const ArtistAlbum = () => {
               >
                 Review
               </button>
+
+              <p>{userWroteRiviews}</p>
             </article>
           </section>
         </Main>
