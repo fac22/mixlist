@@ -123,6 +123,7 @@ const ArtistAlbum = () => {
         setToggleSearch={setToggleSearch}
         textColor={'WHITE'}
         content={'MIXLIST'}
+        session="album_page"
       />
       <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
       <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
