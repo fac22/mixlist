@@ -140,8 +140,12 @@ const ArtistAlbum = () => {
           <section>
             <div className="flex flex-row justify-between">
               <div className="flex flex-col">
-                <H3 color={'PINKT'}>{album} </H3>
-                <H3 color={'BLUET'}>by {name}</H3>
+                <H3 color={'PINKT'} fontSize={'lg'}>
+                  {album}{' '}
+                </H3>
+                <H3 color={'BLUET'} fontSize={'xs'}>
+                  by {name}
+                </H3>
               </div>
               <div className="flex flex-row items-start">
                 <H3 color={'WHITE'}>
