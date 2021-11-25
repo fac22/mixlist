@@ -49,8 +49,8 @@ const ArtistAlbum = () => {
     console.log('URL NAME:', name);
     console.log('URL ALBUM', album);
     let { data, error } = await supabase.rpc('get_albumreview', {
-      album: 'Way to Normal',
-      artist: 'Ben Folds',
+      album: album,
+      artist: name,
     });
 
     if (error) console.error(error);
