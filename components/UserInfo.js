@@ -4,43 +4,43 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import getProfile from '../utils/getProfile';
 
-export default function UserInfo({
-  username,
-  setUsername,
-  userTitleColour,
-  imageURL,
-}) {
-  const [loading, setLoading] = useState(true);
-  const [profile_img, setProfileImg] = useState(null);
+// export default function UserInfo({
+//   username,
+//   setUsername,
+//   userTitleColour,
+//   imageURL,
+// }) {
+//   const [loading, setLoading] = useState(true);
+//   const [profile_img, setProfileImg] = useState(null);
 
-  useEffect(() => {
-    console.log('Changed image');
-  }, [profile_img]);
+//   useEffect(() => {
+//     console.log('Changed image');
+//   }, [profile_img]);
 
-  async function updateProfile({ username, profile_img }) {
-    try {
-      setLoading(true);
-      const user = supabase.auth.user();
+//   async function updateProfile({ username, profile_img }) {
+//     try {
+//       setLoading(true);
+//       const user = supabase.auth.user();
 
-      const updates = {
-        id: user.id,
-        username,
-        profile_img,
-        updated_at: new Date(),
-      };
+//       const updates = {
+//         id: user.id,
+//         username,
+//         profile_img,
+//         updated_at: new Date(),
+//       };
 
-      let { error } = await supabase.from('profiles').upsert(updates, {
-        returning: 'minimal', // Don't return the value after inserting
-      });
-      if (error) {
-        throw error;
-      }
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+//       let { error } = await supabase.from('profiles').upsert(updates, {
+//         returning: 'minimal', // Don't return the value after inserting
+//       });
+//       if (error) {
+//         throw error;
+//       }
+//     } catch (error) {
+//       alert(error.message);
+//     } finally {
+//       setLoading(false);
+//     }
+//   }
 
 export default function UserInfo({
   username,
@@ -50,7 +50,6 @@ export default function UserInfo({
   followedAlbums,
   ratings,
 }) {
-
   return (
     <div className=" flex flex-row">
       {/* <div className="mr-4">
