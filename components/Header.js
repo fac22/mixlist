@@ -11,6 +11,7 @@ export const Header = ({
   setToggleProfile,
   content,
   textColor,
+  session,
 }) => {
   const toggleMenuFn = () => {
     setToggleMenu(() => (toggleMenu === true ? false : true));
@@ -35,17 +36,25 @@ export const Header = ({
       className={`flex flex-row w-full p-5 fixed z-30 ${menuToggle} ${profileJustify}`}
     >
       {/* Left Menu Buttons*/}
-      <button onClick={toggleMenuFn} className={`${hideMenuButton}`}>
-        <HiOutlineMenu className={iconStyle} size={24} />
-      </button>
+
+      {!session ? (
+        <div></div>
+      ) : (
+        <>
+          <button onClick={toggleMenuFn} className={`${hideMenuButton}`}>
+            <HiOutlineMenu className={iconStyle} size={24} />
+          </button>
+
+          <button onClick={toggleMenuFn} className={`${toggleCloseButton}`}>
+            <MdOutlineClose
+              className={`${iconStyle} transform translate-y-px`}
+              size={24}
+            />
+          </button>
+        </>
+      )}
 
       {/* Left Close Button */}
-      <button onClick={toggleMenuFn} className={`${toggleCloseButton}`}>
-        <MdOutlineClose
-          className={`${iconStyle} transform translate-y-px`}
-          size={24}
-        />
-      </button>
 
       {/* MixList Header */}
       <h2
@@ -54,10 +63,14 @@ export const Header = ({
         {content}
       </h2>
 
-      {/* Right Search Button */}
-      <a href={'/profile'} className={`${hideMenuButton}`}>
-        <CgProfile className={iconStyle} size={24} />
-      </a>
+      {/* Right Profile Button */}
+      {!session ? (
+        <div></div>
+      ) : (
+        <a href={'/profile'} className={`${hideMenuButton}`}>
+          <CgProfile className={iconStyle} size={24} />
+        </a>
+      )}
     </div>
   );
 };

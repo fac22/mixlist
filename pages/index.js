@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
-import Auth from '../components/Auth';
-import Account from '../components/Account';
+import HomeLoggedOut from '../components/HomeLoggedOut';
+import Feed from '../components/Feed';
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -15,13 +15,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
+    <div>
       {!session ? (
-        <Auth />
+        <HomeLoggedOut />
       ) : (
-        // <Feed />
-        // include : new Al
-        <Account key={session.user.id} session={session} />
+        <Feed key={session.user.id} session={session} />
       )}
     </div>
   );

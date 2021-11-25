@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function RecReviews({ usersReview, usersReviewArtwork }) {
   return (
     <div className="mt-4">
-      <H3 color="BLUE">LATEST REVIEWS</H3>
+      <H3 color="REDT">LATEST REVIEWS</H3>
       <ul className=" flex flex-col">
         {usersReview.map((e) => (
           <Review
