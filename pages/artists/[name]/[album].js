@@ -75,7 +75,12 @@ const ArtistAlbum = () => {
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
           <section className="mt-14 mb-2">
-            <Image src={`${albInfo.image[4][`#text`]}`} alt="" size={200} />
+            <Image
+              src={`${albInfo.image[4][`#text`]}`}
+              alt=""
+              width={200}
+              height={200}
+            />
           </section>
           <section>
             <div className="flex flex-row justify-between">
