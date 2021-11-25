@@ -6,7 +6,6 @@ import album4 from '../public/album4.jpg';
 import Menu from '../components/Menu';
 import Search from '../components/Search';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
-import { motion } from 'framer-motion';
 import { Header } from '../components/Header';
 import Layout from '../components/Layout';
 import { Main } from '../components/Main';
@@ -14,6 +13,7 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import FeedAlbum from './FeedAlbum';
 import { menuOptions } from './menuOptions';
+import { motion } from 'framer-motion';
 
 const settings = {
   initial: {

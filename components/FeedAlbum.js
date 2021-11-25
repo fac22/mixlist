@@ -9,6 +9,8 @@ export default function FeedAlbum({
   albumTitle,
   username,
 }) {
+  //FUNCTION TO ADD ALBUM TO DATABASE
+  //PASS IN ALBUM NAME, ARTIST NAME, AND USER NAME
   return (
     <>
       <section className=" mb-2">
@@ -21,11 +23,8 @@ export default function FeedAlbum({
             <H4 color={'BLUET'}>Added by SASHA123</H4>
           </div>
           <div className="flex flex-row items-end">
-            <H4 color={'WHITE'}>
-              <BiLike size={16} className="mr-2" />
-            </H4>
-            <H4 color={'WHITE'}>
-              <BiPlus size={18} />
+            <H4 color={'GREENT'}>
+              <BiLike size={20} className="mr-2" onClick />
             </H4>
           </div>
         </div>

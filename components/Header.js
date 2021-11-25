@@ -63,7 +63,7 @@ export const Header = ({
         {content}
       </h2>
 
-      {/* Right Search Button */}
+      {/* Right Profile Button */}
       {!session ? (
         <div></div>
       ) : (

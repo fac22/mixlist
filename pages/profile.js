@@ -55,7 +55,11 @@ export default function ProfilePage() {
         session={session}
       />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-        <Profile username={username} imageURL={profile_img} />
+        <Profile
+          username={username}
+          imageURL={profile_img}
+          setUsername={setUsername}
+        />
       </BackgroundWrapper>
     </>
   );

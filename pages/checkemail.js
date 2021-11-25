@@ -49,8 +49,8 @@ export default function DiscoverPage() {
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <motion.div variants={settings}>
           <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-            <section className="mt-52">
-              <H2 color={'GREENT'}>We've sent you an email!</H2>
+            <section className="mt-72">
+              <H2 color={'GREENT'}>Almost done!</H2>
               <Button
                 className="mt-10"
                 bgColor={'GREENT'}
