@@ -165,18 +165,21 @@ const ArtistAlbum = () => {
           </section>
 
           <section className="divide-dotted divide-BLUET grid grid-cols-1 divide-y">
-            <article className="pt-4">
-              <H3 color={'PINKT'}>ADD REVIEW</H3>
+            <article className="flex flex-col pt-4">
+              <H3 color={'WHITE'}>ADD REVIEW</H3>
 
-              <textarea ref={textInput}></textarea>
+              <textarea
+                ref={textInput}
+                className={`flex flex-col rounded-md	bg-${'REDT'} placeholder-${'DRED'} text-${'DRED'}  text-center mb-4 focus:outline-none focus:placeholder-opacity-0 w-full h-12 transition duration-150 ease-in-out font-header hover:bg-${'REDT'} active:bg-${'REDT'} text-lg md:w-80 tracking-wider ring-2 ring-${'REDT'} mt-2`}
+              ></textarea>
               <button
-                className="text-PINKT "
+                className={`rounded-md bg-${'GREENT'} text-${'DGREEN'} hover:bg-${'GREENHOVER'} w-full md:w-80 h-12 transition duration-150 ease-in-out font-header tracking-wider mb-4 text-lg flex flex-col justify-center items-center ring-2 ring-${'GREENHOVER'} mt-2`}
                 onClick={(e) => {
                   setUserWroteRiviews(textInput.current.value);
                   textInput.current.value = '';
                 }}
               >
-                Review
+                Submit
               </button>
 
               <p>{userWroteRiviews}</p>
