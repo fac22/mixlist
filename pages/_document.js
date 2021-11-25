@@ -17,7 +17,7 @@ class MyDocument extends Document {
           />
         </Head>
 
-        <body className="bg-DPURPLE h-screen">
+        <body className="bg-DPURPLE min-h-screen">
           <Main />
           <NextScript />
         </body>
