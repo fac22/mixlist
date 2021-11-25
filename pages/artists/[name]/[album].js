@@ -21,13 +21,18 @@ const ArtistAlbum = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   const [reviews, setReviews] = React.useState(null);
+  const [artistID, setArtistID] = React.useState(null);
+  const [albumID, setAlbumID] = React.useState(null);
+  const textInput = React.createRef();
+
   const router = useRouter();
-  console.log(router.query);
   const { name, album } = router.query;
 
   const [albInfo, setAlbInfo] = React.useState();
+  const [userWroteRiviews, setUserWroteRiviews] = React.useState();
+  const user = supabase.auth.user();
+
   React.useEffect(() => {
-    console.log('index', albInfo);
     // if (albInfo === undefined || albInfo === '') {
     //   return;
     // }
@@ -36,25 +41,76 @@ const ArtistAlbum = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log('data', data);
         setAlbInfo(data.album);
       });
     getReviews().then((data) => setReviews(data));
+
+    getArtistID();
+    getAlbumID();
   }, [album]);
 
   if (!albInfo || albInfo.artist === 'Undefined') return <div>Loading...</div>;
   // console.log(albInfo.tracks.track[0]);
 
   async function getReviews() {
-    console.log('URL NAME:', name);
-    console.log('URL ALBUM', album);
     let { data, error } = await supabase.rpc('get_albumreview', {
-      album: 'Way to Normal',
-      artist: 'Ben Folds',
+      album: album,
+      artist: name,
     });
-
     if (error) console.error(error);
     else return data;
+  }
+
+  async function updateReview() {
+    try {
+      const { error } = await supabase.from('reviews').insert({
+        review: userWroteRiviews,
+        album_id: albumID,
+        user_id: user.id,
+        artist_id: artistID,
+      });
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  async function getArtistID() {
+    try {
+      let { data, error, status } = await supabase
+        .from('ARTIST')
+        .select('id')
+        .eq(`artist_name`, name);
+
+      if (error && status !== 406) {
+        throw error;
+      }
+      if (data) {
+        setArtistID(data[0].id);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+  async function getAlbumID() {
+    try {
+      let { data, error, status } = await supabase
+        .from('ALBUMS')
+        .select('id')
+        .eq(`album_name`, album);
+
+      console.log(data);
+      if (error && status !== 406) {
+        throw error;
+      }
+      if (data) {
+        setAlbumID(data[0].id);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   return (
@@ -78,8 +134,8 @@ const ArtistAlbum = () => {
             <Image
               src={`${albInfo.image[4][`#text`]}`}
               alt=""
-              width={200}
-              height={200}
+              width="335"
+              height="335"
             />
           </section>
           <section>
@@ -112,19 +168,40 @@ const ArtistAlbum = () => {
           <section className="divide-dotted divide-BLUET grid grid-cols-1 divide-y">
             <article className="pt-4">
               <H3 color={'PINKT'}>ADD REVIEW</H3>
-              <InputTextArea
+              {/* <InputTextArea
                 placeHolder="YOUR REVIEW HERE..."
                 bgColor="PINKT"
                 textColor="DPINK"
                 bgColorHover={'PINKHOVER'}
                 type={'textarea'}
-              />
-              <Button
+              /> */}
+              <textarea
+                ref={textInput}
+                onSubmit={(e) => {
+                  setUserWroteRiviews(e.target.value);
+                  updateReview();
+                }}
+              ></textarea>
+              <button
+                className="text-PINKT "
+                onClick={(e) => {
+                  setUserWroteRiviews(textInput.value);
+                  updateReview();
+                  textInput.current.value = '';
+                }}
+              >
+                Review
+              </button>
+
+              <p>{userWroteRiviews}</p>
+
+              {/* <Button
                 bgColor="PINKT"
                 textColor="DPINK"
                 bgColorHover={'PINKHOVER'}
                 title={'REVIEW'}
-              />
+
+              /> */}
             </article>
           </section>
         </Main>
