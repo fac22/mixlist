@@ -129,12 +129,12 @@ const ArtistAlbum = () => {
       <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
-          <section className="mt-14 mb-2">
+          <section className="mt-2  mb-2">
             <Image
               src={`${albInfo.image[4][`#text`]}`}
               alt=""
-              width={100}
-              height={100}
+              width={400}
+              height={400}
             />
           </section>
           <section>

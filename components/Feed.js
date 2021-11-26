@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import FeedAlbum from './FeedAlbum';
 import { menuOptions } from './menuOptions';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const settings = {
   initial: {

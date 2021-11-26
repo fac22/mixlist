@@ -4,6 +4,8 @@ import { BiLike } from 'react-icons/bi';
 import { BiPlus } from 'react-icons/bi';
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
+import Link from 'next/link';
+
 
 export default function FeedAlbum({
   albumArt,
@@ -63,6 +65,7 @@ export default function FeedAlbum({
   //PASS IN ALBUM NAME, ARTIST NAME, AND USER NAME
   return (
     <>
+      <a href="artists/Ben Folds/Way to Normal" >
       <section className=" mb-2">
         <img src={albumArt} alt="Album Art" />
       </section>
@@ -87,6 +90,7 @@ export default function FeedAlbum({
           </div>
         </div>
       </article>
+      </a>
     </>
   );
 }
