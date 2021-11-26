@@ -1,14 +1,14 @@
 import { H3 } from './H3';
-import { ReviewComp } from './ReviewComp';
+import { Review } from './Review';
 import Image from 'next/image';
 
 export default function RecReviews({ usersReview, usersReviewArtwork }) {
   return (
     <div className="mt-4">
-      <H3 color="REDT">LATEST REVIEWS</H3>
+      <H3 color="BLUE">LATEST REVIEWS</H3>
       <ul className=" flex flex-col">
         {usersReview.map((e) => (
-          <ReviewComp
+          <Review
             src={
               e[1]
                 ? e[1]
@@ -18,7 +18,7 @@ export default function RecReviews({ usersReview, usersReviewArtwork }) {
             key={e}
           >
             {e[0]}
-          </ReviewComp>
+          </Review>
         ))}
       </ul>
     </div>

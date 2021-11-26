@@ -17,7 +17,7 @@ export default function Profile({
     text: 'WHITE',
     username: 'BLUEPRO',
     favtitle: 'PINKPRO',
-    reviewtitle: 'DBLUE',
+    reviewtitle: 'PURPLEPRO',
     loggedtitle: 'GREENPRO',
   };
   return (
@@ -30,10 +30,10 @@ export default function Profile({
         followedAlbums={followedAlbums}
         ratings={ratings}
       />
-      {/* <FavAlbums
+      <FavAlbums
         favTitleColour={colours.favtitle}
         userFavAlbums={userFavAlbums}
-      /> */}
+      />
       <RecReviews
         reviewTitleColour={colours.reviewtitle}
         usersReview={usersReview}
