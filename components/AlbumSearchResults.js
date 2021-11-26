@@ -60,11 +60,11 @@ export default function AlbumResults() {
         <div className="text-WHITE ">
           {selectedResults.map((e) => (
             <div key={`${e.name}`}>
-              <Image
+              <img
                 src={`${e.image[2][`#text`]}`}
                 alt=""
-                width={100}
-                height={100}
+                width="100"
+                height="100"
               />
 
               <p>Name: </p>
