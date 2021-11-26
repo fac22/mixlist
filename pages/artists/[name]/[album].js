@@ -133,8 +133,8 @@ const ArtistAlbum = () => {
             <Image
               src={`${albInfo.image[4][`#text`]}`}
               alt=""
-              width="335"
-              height="335"
+              width={100}
+              height={100}
             />
           </section>
           <section>
