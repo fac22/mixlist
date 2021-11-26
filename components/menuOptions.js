@@ -8,9 +8,9 @@ export const menuOptions = {
   ],
   homeLoggedIn: [
     { id: 1, title: 'FEED', color: 'BLUE', href: '/' },
-    { id: 2, title: 'FIND ALBUM', color: 'PINK', href: '/trend' },
-    { id: 3, title: 'FIND USER', color: 'WHITE', href: '/discover' },
-    { id: 4, title: 'PROFILE', color: 'GREEN', href: '/search' },
+    // { id: 2, title: 'FIND ALBUM', color: 'PINK', href: '/trend' },
+    // { id: 3, title: 'FIND USER', color: 'WHITE', href: '/discover' },
+    { id: 4, title: 'PROFILE', color: 'GREEN', href: '/profile' },
     { id: 5, title: 'LOGOUT', color: 'BLUE', href: '/home' },
   ],
 };
