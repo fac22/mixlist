@@ -10,7 +10,9 @@ export default function AlbumSearch({ search, setSearch, result }) {
           console.log(search);
         }}
       >
-        <label htmlFor="album">Search an album</label>
+        <label htmlFor="album" className="text-WHITE">
+          Search an album
+        </label>
         <input
           type="text"
           aria-label="Search album"

@@ -1,6 +1,8 @@
 import React from 'react';
-import Search from './AlbumSearch';
+import AlbumSearch from './AlbumSearch';
 import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AlbumResults() {
   const [result, setResult] = React.useState();
@@ -31,7 +33,11 @@ export default function AlbumResults() {
         </Head>
         <main>
           <section>
-            <Search search={search} setSearch={setSearch} result={result} />
+            <AlbumSearch
+              search={search}
+              setSearch={setSearch}
+              result={result}
+            />
           </section>
         </main>
       </>
@@ -47,22 +53,38 @@ export default function AlbumResults() {
       </Head>
       <main>
         <section>
-          <Search search={search} setSearch={setSearch} result={result} />
+          <AlbumSearch search={search} setSearch={setSearch} result={result} />
         </section>
-        <h1>Search results for {search}</h1>
+        <h1 className="text-WHITE">Search results for {search}</h1>
 
-        <div>
+        <div className="text-WHITE ">
           {selectedResults.map((e) => (
             <div key={`${e.name}`}>
-              <img src={`${e.image[2][`#text`]}`} alt="" />
+              <Image
+                src={`${e.image[2][`#text`]}`}
+                alt=""
+                width={100}
+                height={100}
+              />
 
               <p>Name: </p>
               <b>
-                <p id="album_name">{e.name}</p>
+                <p id="album_name">
+                  <Link
+                    href="/artists/[name]/[album]"
+                    as={`/artists/${e.artist}/${e.name}`}
+                  >
+                    {e.name}
+                  </Link>
+                </p>
               </b>
 
               <i>
-                <p id="album_artist">{e.artist}</p>
+                <p id="album_artist">
+                  <Link href="/artists/[name]" as={`/artists/${e.artist}`}>
+                    {e.artist}
+                  </Link>
+                </p>
               </i>
             </div>
           ))}
