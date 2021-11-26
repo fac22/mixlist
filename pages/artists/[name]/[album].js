@@ -21,49 +21,101 @@ const ArtistAlbum = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [toggleSearch, setToggleSearch] = React.useState(false);
   const [reviews, setReviews] = React.useState(null);
+  const [artistID, setArtistID] = React.useState(1);
+  const [albumID, setAlbumID] = React.useState(1);
+  const textInput = React.createRef();
+
   const router = useRouter();
-  console.log(router.query);
   const { name, album } = router.query;
 
-  const [albInfo, setAlbInfo] = React.useState();
+  const [albInfo, setAlbInfo] = React.useState(null);
+  const [userWroteRiviews, setUserWroteRiviews] = React.useState('');
+  const user = supabase.auth.user();
+
   React.useEffect(() => {
-    console.log('index', albInfo);
-    // if (albInfo === undefined || albInfo === '') {
-    //   return;
-    // }
+    getReviews().then((data) => setReviews(data));
+    console.log({ reviews });
     fetch(
       `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=e836ddbce95921744c7e9efe110bcd54&format=json&artist=${name}&album=${album}&format=json`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log('data', data);
         setAlbInfo(data.album);
       });
-    getReviews().then((data) => setReviews(data));
-  }, [album]);
+    console.log(albInfo, userWroteRiviews);
 
-  if (!albInfo || albInfo.artist === 'Undefined') return <div>Loading...</div>;
-  // console.log(albInfo.tracks.track[0]);
+    if (albInfo !== null && userWroteRiviews !== '') {
+      getAlbumID();
+      getArtistID();
+      if (albumID && artistID) {
+        updateReview();
+        setUserWroteRiviews('');
+      }
+    }
+  }, [album, userWroteRiviews]);
 
   async function getReviews() {
-    console.log('URL NAME:', name);
-    console.log('URL ALBUM', album);
     let { data, error } = await supabase.rpc('get_albumreview', {
-      album: 'Way to Normal',
-      artist: 'Ben Folds',
+      album: album,
+      artist: name,
     });
-
+    console.log(data);
     if (error) console.error(error);
     else return data;
   }
+
+  async function updateReview() {
+    let { error } = await supabase.from('reviews').insert({
+      review: userWroteRiviews,
+      album_id: albumID,
+      user_id: user.id,
+      artist_id: artistID,
+    });
+    console.log('updating');
+    if (error) console.error(error);
+  }
+
+  async function getArtistID() {
+    let { data, error, status } = await supabase
+      .from('ARTIST')
+      .select('id')
+      .eq(`artist_name`, name);
+    if (error) console.error(error);
+
+    console.log('get artist', data);
+    if (data) {
+      setArtistID(data[0].id);
+    }
+  }
+
+  async function getAlbumID() {
+    let { data, error, status } = await supabase
+      .from('ALBUMS')
+      .select('id')
+      .eq(`album_name`, album);
+    console.log('get album', data);
+    if (error) console.error(error);
+
+    if (data) {
+      setAlbumID(data[0].id);
+    }
+  }
+
+  if (
+    !albInfo ||
+    albInfo.artist === 'Undefined' ||
+    reviews === null ||
+    artistID === null ||
+    albumID === null
+  )
+    return <div>Loading...</div>;
 
   return (
     <>
       <Head>
         <Layout title={name} />
       </Head>
-      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
+
       <Header
         toggleMenu={toggleMenu}
         setToggleMenu={setToggleMenu}
@@ -71,7 +123,10 @@ const ArtistAlbum = () => {
         setToggleSearch={setToggleSearch}
         textColor={'WHITE'}
         content={'MIXLIST'}
+        session="album_page"
       />
+      <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
+      <Search toggleSearch={toggleSearch} setToggleSearch={setToggleSearch} />
       <BackgroundWrapper toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
         <Main toggleMenu={toggleMenu} toggleSearch={toggleSearch}>
           <section className="mt-14 mb-2">
@@ -85,8 +140,12 @@ const ArtistAlbum = () => {
           <section>
             <div className="flex flex-row justify-between">
               <div className="flex flex-col">
-                <H3 color={'PINKT'}>{album} </H3>
-                <H3 color={'BLUET'}>by {name}</H3>
+                <H3 color={'PINKT'} fontSize={'lg'}>
+                  {album}{' '}
+                </H3>
+                <H3 color={'BLUET'} fontSize={'xs'}>
+                  by {name}
+                </H3>
               </div>
               <div className="flex flex-row items-start">
                 <H3 color={'WHITE'}>
@@ -110,41 +169,28 @@ const ArtistAlbum = () => {
           </section>
 
           <section className="divide-dotted divide-BLUET grid grid-cols-1 divide-y">
-            <article className="pt-4">
-              <H3 color={'PINKT'}>ADD REVIEW</H3>
-              <InputTextArea
-                placeHolder="YOUR REVIEW HERE..."
-                bgColor="PINKT"
-                textColor="DPINK"
-                bgColorHover={'PINKHOVER'}
-                type={'textarea'}
-              />
-              <Button
-                bgColor="PINKT"
-                textColor="DPINK"
-                bgColorHover={'PINKHOVER'}
-                title={'REVIEW'}
-              />
+            <article className="flex flex-col pt-4">
+              <H3 color={'WHITE'}>ADD REVIEW</H3>
+
+              <textarea
+                ref={textInput}
+                className={`flex flex-col rounded-md	bg-${'REDT'} placeholder-${'DRED'} text-${'DRED'}  text-center mb-4 focus:outline-none focus:placeholder-opacity-0 w-full h-12 transition duration-150 ease-in-out font-header hover:bg-${'REDT'} active:bg-${'REDT'} text-lg md:w-80 tracking-wider ring-2 ring-${'REDT'} mt-2`}
+              ></textarea>
+              <button
+                className={`rounded-md bg-${'GREENT'} text-${'DGREEN'} hover:bg-${'GREENHOVER'} w-full md:w-80 h-12 transition duration-150 ease-in-out font-header tracking-wider mb-4 text-lg flex flex-col justify-center items-center ring-2 ring-${'GREENHOVER'} mt-2`}
+                onClick={(e) => {
+                  setUserWroteRiviews(textInput.current.value);
+                  textInput.current.value = '';
+                }}
+              >
+                Submit
+              </button>
+
+              <p>{userWroteRiviews}</p>
             </article>
           </section>
         </Main>
       </BackgroundWrapper>
-      {/* <div className="text-WHITE align-center w-full h-full p-20">
-        <img src={`${albInfo.image[4][`#text`]}`} alt="" />
-        <h1>{album}</h1>
-        <h1>by {name}</h1>
-        {albInfo.wiki.published ? (
-          <h2>Released: {albInfo.wiki.published.split(',')[0]}</h2>
-        ) : (
-          ''
-        )}
-
-        {albInfo.tags.tag.map((song) => {
-          <li>{song.name}</li>;
-        })}
-
-        <span>{albInfo.tracks.track[0].name}</span>
-      </div> */}
     </>
   );
 };

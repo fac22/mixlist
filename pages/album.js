@@ -14,9 +14,9 @@ import { P } from '../components/P';
 import { BackgroundWrapper } from '../components/BackgroundWrapper';
 import { BiLike } from 'react-icons/bi';
 import { BiPlus } from 'react-icons/bi';
-import { Review } from '../components/Review';
 import InputTextArea from '../components/InputTextArea';
 import Layout from '../components/Layout';
+import { ReviewComp } from '../components/ReviewComp';
 
 export default function Home() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -60,20 +60,24 @@ export default function Home() {
           </section>
 
           <section className="divide-dotted divide-BLUET grid grid-cols-1 divide-y">
-            <Review image={album} alt={'Album Art'} username={'LEVEL87 (3123)'}>
+            <ReviewComp
+              image={album}
+              alt={'Album Art'}
+              username={'LEVEL87 (3123)'}
+            >
               Something in this album is far more beautiful than sounds should
               be able to convey. The album that accompanied the deepest and most
               profound moments of my lockdown. Favorite track: Something In The
               Sadness.
-            </Review>
-            <Review image={album} alt={'Album Art'} username={'HELLO123'}>
+            </ReviewComp>
+            <ReviewComp image={album} alt={'Album Art'} username={'HELLO123'}>
               Something in this album is far more beautiful than sounds should
               be able to convey. Sadness.
-            </Review>
-            <Review image={album} alt={'Album Art'} username={'HELLO123'}>
+            </ReviewComp>
+            <ReviewComp image={album} alt={'Album Art'} username={'HELLO123'}>
               Something in this album is far more beautiful than sounds should
               be able to convey. Favorite track: Something In The Sadness.
-            </Review>
+            </ReviewComp>
             <article className="pt-4">
               <H3 color={'PINKT'}>ADD REVIEW</H3>
               <InputTextArea

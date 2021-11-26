@@ -13,7 +13,6 @@ export default function Profile({
   usersReviewArtwork,
   userFavAlbums,
 }) {
-
   const colours = {
     text: 'WHITE',
     username: 'BLUEPRO',
@@ -27,18 +26,14 @@ export default function Profile({
         username={username}
         userTitleColour={colours.username}
         imageURL={imageURL}
-
-        setUsername={setUsername}
-      />
-
         reviewsTotal={reviewsTotal}
         followedAlbums={followedAlbums}
         ratings={ratings}
       />
-      <FavAlbums
+      {/* <FavAlbums
         favTitleColour={colours.favtitle}
         userFavAlbums={userFavAlbums}
-      />
+      /> */}
       <RecReviews
         reviewTitleColour={colours.reviewtitle}
         usersReview={usersReview}
