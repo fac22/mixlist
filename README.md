@@ -174,4 +174,4 @@ It is easy to modify parts of the codebase without affecting others, because whe
 <!-- Could a new person quickly be onboarded to contribute?
 Describes how they have maintained a productive, professional and secure working environment throughout the project activity (B3) -->
 
-When Sasha was forced to take some time away from the project, the rest of the team took time to explain the code to her, which was easy to do because it had been written in a straightforward, modular manner.
+When Sasha was forced to take some time away from the project, the rest of the team took time to explain the code to her, which was easy to do because it had been written in a straightforward, modular manner..
